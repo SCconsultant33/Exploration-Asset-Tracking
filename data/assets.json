@@ -1,4 +1,77 @@
 {
   "schema_version": "1.0",
-  "assets": []
+  "assets": [
+    {
+      "title": "College Advising Essentials, Volume 2",
+      "category": "college",
+      "asset_type": "counselor_guide",
+      "source": "College Board",
+      "published_date": null,
+      "url": "https://counselors.collegeboard.org/media/pdf/MAR-23552-Vol2-College-Advising-Essentials-Update-WR%20%282%29_0.pdf",
+      "summary": "This 2025-edition guide gives counselors ready-to-use handouts and planning guidance for college fairs, representative visits, interviews, list building, and finding a good academic, social, and financial fit. Its counselor-specific prompts and student/family worksheets can be used directly in individual advising, classroom lessons, and family programming.",
+      "discovered_date": "2026-07-22",
+      "review_status": "pending",
+      "report_file": "reports/2026-07-22.md"
+    },
+    {
+      "title": "2025–26 First-Year Requirements Grid",
+      "category": "college",
+      "asset_type": "reference_grid",
+      "source": "Common App",
+      "published_date": "2026-04-29",
+      "url": "https://content.commonapp.org/Files/ReqGrid.pdf",
+      "summary": "This 58-page comparison grid lists first-year application requirements across Common App member colleges, including deadlines, fees, testing policies, essays, portfolios, and recommendation requirements. Counselors can use it to help high school students build realistic application plans and verify institution-specific requirements before submission.",
+      "discovered_date": "2026-07-22",
+      "review_status": "pending",
+      "report_file": "reports/2026-07-22.md"
+    },
+    {
+      "title": "Michigan Career Development Model Reference Guide",
+      "category": "career",
+      "asset_type": "implementation_guide",
+      "source": "Michigan Department of Education",
+      "published_date": null,
+      "url": "https://www.michigan.gov/mde/-/media/Project/Websites/mde/CTE/career-development/MCDM/MCDM-Reference-Guide.pdf?hash=5EAFE6DCA604DBD0227F7037041BD214&rev=d8575a56e8824047b3d52db382a812d0",
+      "summary": "Michigan’s updated framework organizes career awareness, exploration, preparation, and planning across K–12 grade bands, with learning targets, implementation strategies, and suggested evidence of practice. It is directly useful to Michigan counselors aligning schoolwide career development and Educational Development Plan work with state expectations.",
+      "discovered_date": "2026-07-22",
+      "review_status": "pending",
+      "report_file": "reports/2026-07-22.md"
+    },
+    {
+      "title": "Career Exploration Activities: Individual Plans of Study Tip Sheet",
+      "category": "career",
+      "asset_type": "tip_sheet",
+      "source": "Regional Educational Laboratory Central, U.S. Department of Education",
+      "published_date": null,
+      "url": "https://ies.ed.gov/sites/default/files/rel-central/document/2025/11/RELCETipCareerExploration.pdf",
+      "summary": "This January 2025 tip sheet presents field-tested middle and high school activities such as career fairs, internship bootcamps, client-connected projects, career research, and senior capstones. It includes counselor-specific implementation tips that can help K–12 teams embed developmentally appropriate exploration into advising, seminar, and core classes.",
+      "discovered_date": "2026-07-22",
+      "review_status": "pending",
+      "report_file": "reports/2026-07-22.md"
+    },
+    {
+      "title": "Questions to Ask a Military Recruiter",
+      "category": "military",
+      "asset_type": "web_guide",
+      "source": "Today’s Military, U.S. Department of War",
+      "published_date": null,
+      "url": "https://www.todaysmilitary.com/joining-eligibility/questions-ask-recruiter",
+      "summary": "This practical guide organizes questions about service branches, recruiting, basic training, first-term commitments, job assignment, pay, benefits, education, and family concerns. Counselors can use the prompts to help students compare branches, involve families, and obtain concrete answers before making a military commitment.",
+      "discovered_date": "2026-07-22",
+      "review_status": "pending",
+      "report_file": "reports/2026-07-22.md"
+    },
+    {
+      "title": "FUTURES Magazine 2025",
+      "category": "military",
+      "asset_type": "digital_magazine",
+      "source": "Today’s Military, U.S. Department of War",
+      "published_date": null,
+      "url": "https://s3.amazonaws.com/files.todaysmilitary.com/2025-09/JRP-25-12303208-005_Futures2025_Digital_Catalog%203_0.pdf",
+      "summary": "The 2025 edition of this annual publication gives students an accessible overview of military jobs, education and training routes, service experiences, and everyday military life. School counselors can use its profiles and explanations as a student-facing introduction before deeper comparison of branches, commitments, and civilian alternatives.",
+      "discovered_date": "2026-07-22",
+      "review_status": "pending",
+      "report_file": "reports/2026-07-22.md"
+    }
+  ]
 }
