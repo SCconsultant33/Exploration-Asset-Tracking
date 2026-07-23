@@ -294,6 +294,8 @@
     }
     .btn { min-height: 42px; padding: 9px 16px; border: 1px solid var(--line); border-radius: 11px; background: transparent; color: var(--ink); font-weight: 750; }
     .btn.primary { border-color: var(--green); background: var(--green); color: white; }
+    .token-input { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .security-note { color: var(--muted); font-size: 13px; }
     @media (max-width: 760px) {
       .shell { width: min(100% - 20px, 1180px); }
       .source-pill { display: none; }
@@ -358,6 +360,32 @@
     </section>
   </main>
 
+
+  <dialog id="authDialog">
+    <form method="dialog" id="authForm">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">Persistent saving</p>
+          <h2>Connect GitHub</h2>
+          <p class="publisher">Use a repository-limited token to commit dashboard edits.</p>
+        </div>
+        <button class="close" value="cancel" aria-label="Close dialog">×</button>
+      </div>
+      <div class="modal-body">
+        <p class="summary">Create a fine-grained personal access token in GitHub. Give it access only to <strong>Exploration-Asset-Tracking</strong> with <strong>Contents: Read and write</strong>. The token stays in this browser tab session and is sent only to GitHub’s API.</p>
+        <p><a class="asset-link" href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener noreferrer">Create or manage GitHub tokens ↗</a></p>
+        <label class="field">Fine-grained token
+          <input class="control token-input" id="githubToken" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…">
+        </label>
+        <p class="form-message" id="authMessage" role="alert"></p>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" value="cancel">Cancel</button>
+        <button class="btn primary" type="button" id="connectGitHub">Connect securely</button>
+      </div>
+    </form>
+  </dialog>
+
   <dialog id="assetDialog">
     <form method="dialog" id="assetForm">
       <div class="modal-head">
@@ -409,17 +437,23 @@
       "use strict";
 
       var config = window.EXPLORATION_ASSET_CONFIG || {};
+      var storagePrefix = "exploration-asset-tracking:";
+      var tokenKey = "exploration-asset-github-token";
       var state = {
-        assets: [], view: "review", category: "all", status: "all", query: "", selectedId: null,
-        apiBase: String(config.apiBase || "").replace(/\/$/, ""),
-        session: sessionStorage.getItem("exploration-asset-session") || "",
+        assets: [],
+        view: "review",
+        category: "all",
+        status: "all",
+        query: "",
+        selectedId: null,
+        githubToken: sessionStorage.getItem(tokenKey) || "",
         authenticated: false,
         login: null,
         saving: false
       };
-      var storagePrefix = "exploration-asset-tracking:";
       var assetList = document.getElementById("assetList");
-      var dialog = document.getElementById("assetDialog");
+      var assetDialog = document.getElementById("assetDialog");
+      var authDialog = document.getElementById("authDialog");
       var statusFilter = document.getElementById("statusFilter");
 
       function escapeHtml(value) {
@@ -450,12 +484,9 @@
         });
       }
 
-      function captureSession() {
-        var match = location.hash.match(/(?:^#|&)session=([^&]+)/);
-        if (!match) return;
-        state.session = decodeURIComponent(match[1]);
-        sessionStorage.setItem("exploration-asset-session", state.session);
-        history.replaceState(null, "", location.pathname + location.search);
+      function isUsed(asset) {
+        var item = current(asset);
+        return item.used_for_exploration === true && Boolean(item.used_date);
       }
 
       function queuedCount() {
@@ -472,62 +503,134 @@
 
       function updateAuthUi() {
         var button = document.getElementById("authButton");
-        if (!state.apiBase) {
-          button.textContent = "Save setup pending";
-          button.disabled = true;
-          button.className = "auth-button";
-          setPersistence("Secure repository saving is not configured yet. Edits remain queued in this browser.", "");
-          return;
-        }
         button.disabled = false;
-        button.textContent = state.authenticated ? "Sign out " + state.login : "Sign in with GitHub";
+        button.textContent = state.authenticated ? "Disconnect " + state.login : "Connect GitHub";
         button.className = "auth-button" + (state.authenticated ? " secondary" : "");
         var queued = queuedCount();
         if (state.authenticated) {
-          setPersistence(queued ? "Signed in. " + queued + " browser edit" + (queued === 1 ? "" : "s") + " waiting to sync." : "Changes save directly to the GitHub asset registry.", "online");
+          setPersistence(queued ? "Connected to GitHub. " + queued + " browser edit" + (queued === 1 ? "" : "s") + " waiting to sync." : "Changes save permanently to data/assets.json in GitHub.", "online");
         } else {
-          setPersistence(queued ? queued + " edit" + (queued === 1 ? " is" : "s are") + " queued. Sign in to commit to GitHub." : "Sign in with GitHub to save changes permanently.", "");
+          setPersistence(queued ? queued + " edit" + (queued === 1 ? " is" : "s are") + " queued. Connect GitHub to save permanently." : "Connect GitHub to save dashboard changes permanently.", "");
         }
       }
 
-      function authHeaders() {
-        return { "Authorization": "Bearer " + state.session, "Content-Type": "application/json" };
+      function githubHeaders(token) {
+        return {
+          "Accept": "application/vnd.github+json",
+          "Authorization": "Bearer " + token,
+          "Content-Type": "application/json",
+          "X-GitHub-Api-Version": "2022-11-28"
+        };
       }
 
-      async function checkSession() {
-        if (!state.apiBase || !state.session) {
-          state.authenticated = false;
+      function repoApiUrl() {
+        return "https://api.github.com/repos/" + encodeURIComponent(config.githubOwner) + "/" +
+          encodeURIComponent(config.githubRepo);
+      }
+
+      function contentsApiUrl() {
+        return repoApiUrl() + "/contents/" + String(config.githubPath || "data/assets.json").split("/").map(encodeURIComponent).join("/");
+      }
+
+      async function validateToken(token) {
+        var responses = await Promise.all([
+          fetch("https://api.github.com/user", { headers: githubHeaders(token), cache: "no-store" }),
+          fetch(repoApiUrl(), { headers: githubHeaders(token), cache: "no-store" })
+        ]);
+        var user = await responses[0].json();
+        var repo = await responses[1].json();
+        if (!responses[0].ok) throw new Error("GitHub did not accept this token.");
+        if (String(user.login).toLowerCase() !== String(config.allowedLogin).toLowerCase()) {
+          throw new Error("This token belongs to a different GitHub account.");
+        }
+        if (!responses[1].ok || !repo.permissions || !repo.permissions.push) {
+          throw new Error("The token does not have write access to this repository.");
+        }
+        state.githubToken = token;
+        state.authenticated = true;
+        state.login = user.login;
+        sessionStorage.setItem(tokenKey, token);
+        updateAuthUi();
+        return true;
+      }
+
+      async function checkStoredToken() {
+        if (!state.githubToken) {
           updateAuthUi();
           return false;
         }
         try {
-          var response = await fetch(state.apiBase + "/api/session", { headers: authHeaders(), cache: "no-store" });
-          if (!response.ok) throw new Error("Session expired");
-          var result = await response.json();
-          state.authenticated = true;
-          state.login = result.login;
-          updateAuthUi();
+          await validateToken(state.githubToken);
           return true;
         } catch (error) {
-          state.session = "";
+          state.githubToken = "";
           state.authenticated = false;
           state.login = null;
-          sessionStorage.removeItem("exploration-asset-session");
+          sessionStorage.removeItem(tokenKey);
           updateAuthUi();
           return false;
         }
       }
 
+      function disconnectGitHub() {
+        state.githubToken = "";
+        state.authenticated = false;
+        state.login = null;
+        sessionStorage.removeItem(tokenKey);
+        updateAuthUi();
+      }
+
+      function decodeBase64(value) {
+        var binary = atob(String(value || "").replace(/\s/g, ""));
+        var bytes = Uint8Array.from(binary, function (char) { return char.charCodeAt(0); });
+        return new TextDecoder().decode(bytes);
+      }
+
+      function encodeBase64(value) {
+        var bytes = new TextEncoder().encode(value);
+        var binary = "";
+        for (var i = 0; i < bytes.length; i += 1) binary += String.fromCharCode(bytes[i]);
+        return btoa(binary);
+      }
+
       async function updateRemote(assetId, changes) {
-        var response = await fetch(state.apiBase + "/api/assets/" + encodeURIComponent(assetId), {
-          method: "PATCH",
-          headers: authHeaders(),
-          body: JSON.stringify(changes)
-        });
-        var result = {};
-        try { result = await response.json(); } catch (error) {}
-        if (!response.ok) throw new Error(result.error || "The GitHub update failed.");
-        return result;
+        for (var attempt = 0; attempt < 2; attempt += 1) {
+          var readResponse = await fetch(contentsApiUrl() + "?ref=main&t=" + Date.now(), {
+            headers: githubHeaders(state.githubToken),
+            cache: "no-store"
+          });
+          var file = await readResponse.json();
+          if (!readResponse.ok) throw new Error(file.message || "The asset registry could not be read.");
+
+          var registry = JSON.parse(decodeBase64(file.content));
+          var index = registry.assets.findIndex(function (asset) { return asset.id === assetId; });
+          if (index < 0) throw new Error("This asset was not found in the current registry.");
+
+          var updatedAt = new Date().toISOString();
+          registry.assets[index] = Object.assign({}, registry.assets[index], {
+            review_status: normalizeStatus(changes.review_status),
+            used_for_exploration: Boolean(changes.used_for_exploration),
+            used_date: changes.used_for_exploration ? changes.used_date : null,
+            last_updated_at: updatedAt,
+            last_updated_by: state.login
+          });
+          registry.updated_at = updatedAt.slice(0, 10);
+
+          var writeResponse = await fetch(contentsApiUrl(), {
+            method: "PUT",
+            headers: githubHeaders(state.githubToken),
+            body: JSON.stringify({
+              message: "Update tracking for " + registry.assets[index].title,
+              content: encodeBase64(JSON.stringify(registry, null, 2) + "\n"),
+              sha: file.sha
+            })
+          });
+          var result = await writeResponse.json();
+          if (writeResponse.ok) return { asset: registry.assets[index], commit: result.commit };
+          if ((writeResponse.status === 409 || writeResponse.status === 422) && attempt === 0) continue;
+          throw new Error(result.message || "GitHub rejected the update.");
+        }
+        throw new Error("The registry changed during the save. Please try again.");
       }
 
       function applySavedAsset(saved) {
@@ -560,11 +663,6 @@
         }
         render();
         updateAuthUi();
-      }
-
-      function isUsed(asset) {
-        var item = current(asset);
-        return item.used_for_exploration === true && Boolean(item.used_date);
       }
 
       function formatPublished(value) {
@@ -617,12 +715,10 @@
         var items = filteredAssets();
         document.getElementById("dateHeading").textContent = state.view === "used" ? "Date used" : "Published";
         statusFilter.style.display = state.view === "review" ? "" : "none";
-
         if (!items.length) {
           assetList.innerHTML = '<div class="empty"><strong>No matching assets</strong>Try changing the search or filters.</div>';
           return;
         }
-
         assetList.innerHTML = items.map(function (asset) {
           var shownDate = state.view === "used" ? formatDate(asset.used_date) : formatPublished(asset.published_date);
           return '<button class="asset-row" type="button" data-id="' + escapeHtml(asset.id) + '">' +
@@ -633,7 +729,6 @@
             '<span class="status ' + escapeHtml(asset.review_status) + '">' + escapeHtml(statusLabel(asset.review_status)) + '</span>' +
             '<span class="chevron">›</span></button>';
         }).join("");
-
         Array.prototype.forEach.call(assetList.querySelectorAll(".asset-row"), function (row) {
           row.addEventListener("click", function () { openAsset(row.getAttribute("data-id")); });
         });
@@ -671,7 +766,7 @@
         document.getElementById("editUsedDate").value = asset.used_date || "";
         document.getElementById("editUsedDate").disabled = !asset.used_for_exploration;
         document.getElementById("formMessage").textContent = "";
-        dialog.showModal();
+        assetDialog.showModal();
       }
 
       document.getElementById("editUsed").addEventListener("change", function (event) {
@@ -691,7 +786,6 @@
           message.textContent = "Add the date this asset was used.";
           return;
         }
-
         var changes = {
           review_status: document.getElementById("editStatus").value,
           used_for_exploration: used,
@@ -701,16 +795,10 @@
         localStorage.setItem(storagePrefix + original.id, JSON.stringify(changes));
         render();
         updateAuthUi();
-
-        if (!state.apiBase) {
-          dialog.close();
-          return;
-        }
         if (!state.authenticated) {
-          message.textContent = "This edit is queued. Sign in with GitHub to save it permanently.";
+          message.textContent = "This edit is queued. Connect GitHub to save it permanently.";
           return;
         }
-
         state.saving = true;
         saveButton.disabled = true;
         saveButton.textContent = "Saving…";
@@ -718,16 +806,50 @@
         try {
           var result = await updateRemote(original.id, changes);
           applySavedAsset(result.asset);
-          dialog.close();
+          assetDialog.close();
           render();
           updateAuthUi();
         } catch (error) {
           message.textContent = error.message;
-          setPersistence("The last edit is still queued in this browser because GitHub could not be updated.", "error");
+          setPersistence("The last edit remains queued because GitHub could not be updated.", "error");
         } finally {
           state.saving = false;
           saveButton.disabled = false;
           saveButton.textContent = "Save changes";
+        }
+      });
+
+      document.getElementById("authButton").addEventListener("click", function () {
+        if (state.authenticated) {
+          disconnectGitHub();
+          return;
+        }
+        document.getElementById("githubToken").value = "";
+        document.getElementById("authMessage").textContent = "";
+        authDialog.showModal();
+      });
+
+      document.getElementById("connectGitHub").addEventListener("click", async function () {
+        var token = document.getElementById("githubToken").value.trim();
+        var message = document.getElementById("authMessage");
+        var button = document.getElementById("connectGitHub");
+        if (!token) {
+          message.textContent = "Paste your fine-grained GitHub token.";
+          return;
+        }
+        button.disabled = true;
+        button.textContent = "Checking…";
+        message.textContent = "";
+        try {
+          await validateToken(token);
+          document.getElementById("githubToken").value = "";
+          authDialog.close();
+          await syncQueuedChanges();
+        } catch (error) {
+          message.textContent = error.message;
+        } finally {
+          button.disabled = false;
+          button.textContent = "Connect securely";
         }
       });
 
@@ -745,23 +867,7 @@
       document.getElementById("category").addEventListener("change", function (event) { state.category = event.target.value; render(); });
       statusFilter.addEventListener("change", function (event) { state.status = event.target.value; render(); });
 
-      document.getElementById("authButton").addEventListener("click", function () {
-        if (!state.apiBase) return;
-        if (state.authenticated) {
-          state.session = "";
-          state.authenticated = false;
-          state.login = null;
-          sessionStorage.removeItem("exploration-asset-session");
-          updateAuthUi();
-          return;
-        }
-        var returnTo = location.origin + location.pathname;
-        location.href = state.apiBase + "/auth/login?return_to=" + encodeURIComponent(returnTo);
-      });
-
-      captureSession();
       updateAuthUi();
-
       var registryUrl = config.registryUrl || "./data/assets.json";
       registryUrl += (registryUrl.indexOf("?") >= 0 ? "&" : "?") + "v=" + Date.now();
       fetch(registryUrl, { cache: "no-store" })
@@ -773,7 +879,7 @@
           state.assets = Array.isArray(data) ? data : (data.assets || []);
           populateCategories();
           render();
-          return checkSession().then(function (authenticated) {
+          return checkStoredToken().then(function (authenticated) {
             if (authenticated) return syncQueuedChanges();
           });
         })
