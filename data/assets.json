@@ -3,6 +3,7 @@
   "updated_at": "2026-07-23",
   "assets": [
     {
+      "id": "2025-state-of-the-future-us-workforce",
       "title": "2025 State of the Future US Workforce",
       "category": "career",
       "asset_type": "Report",
@@ -17,6 +18,7 @@
       "historical": true
     },
     {
+      "id": "the-changing-face-of-college-applications-by-the-numbers",
       "title": "The Changing Face of College Applications, By the Numbers",
       "category": "college",
       "asset_type": "Report",
@@ -31,6 +33,7 @@
       "historical": true
     },
     {
+      "id": "us-army-recruiting-facts-and-figures-2025",
       "title": "US Army Recruiting Facts and Figures 2025",
       "category": "military",
       "asset_type": "Report",
@@ -45,6 +48,7 @@
       "historical": true
     },
     {
+      "id": "win-q2-2025-labor-market-report",
       "title": "WIN Q2 2025 Labor Market Report",
       "category": "career",
       "asset_type": "Report",
@@ -59,6 +63,7 @@
       "historical": true
     },
     {
+      "id": "how-do-incoming-community-college-students-think-about-programs-of-study",
       "title": "How Do Incoming Community College Students Think About Programs of Study and Potential Careers Report",
       "category": "college",
       "asset_type": "Research",
@@ -73,6 +78,7 @@
       "historical": true
     },
     {
+      "id": "military-focused-education-and-career-advising-article",
       "title": "Military-Focused Education and Career Advising Article",
       "category": "military",
       "asset_type": "Article",
@@ -87,6 +93,7 @@
       "historical": true
     },
     {
+      "id": "extending-the-runway-report",
       "title": "Extending the Runway Report",
       "category": "career",
       "asset_type": "Report",
@@ -101,6 +108,7 @@
       "historical": true
     },
     {
+      "id": "extending-the-runway-michigan-profile",
       "title": "Extending the Runway Michigan Profile",
       "category": "career",
       "asset_type": "Report",
@@ -115,6 +123,7 @@
       "historical": true
     },
     {
+      "id": "tools-for-working-with-your-school-counselor-on-college-and-career-plann",
       "title": "Tools for Working with your School Counselor on College and Career Planning",
       "category": "college",
       "asset_type": "Resource",
@@ -129,6 +138,7 @@
       "historical": true
     },
     {
+      "id": "how-has-military-enlistment-changed",
       "title": "How Has Military Enlistment Changed?",
       "category": "military",
       "asset_type": "Article",
@@ -143,6 +153,7 @@
       "historical": true
     },
     {
+      "id": "strengths-based-career-counseling-ideas-for-school-counseling-practice",
       "title": "Strengths-Based Career Counseling - Ideas for School Counseling Practice",
       "category": "career",
       "asset_type": "Article",
@@ -157,6 +168,7 @@
       "historical": true
     },
     {
+      "id": "supporting-first-generation-college-students-in-2025",
       "title": "Supporting First-Generation College Students in 2025",
       "category": "college",
       "asset_type": "Resource",
@@ -171,6 +183,7 @@
       "historical": true
     },
     {
+      "id": "us-space-force-faqs",
       "title": "US Space Force FAQs",
       "category": "military",
       "asset_type": "Resource",
@@ -185,6 +198,7 @@
       "historical": true
     },
     {
+      "id": "a-culturally-responsive-career-development-intervention-with-racially-mi",
       "title": "A Culturally Responsive Career Development Intervention with Racially Minoritied Girls of Color",
       "category": "career",
       "asset_type": "Research",
@@ -199,6 +213,7 @@
       "historical": true
     },
     {
+      "id": "aspire-higher-an-undocumented-student-s-guide-to-college-in-michigan",
       "title": "Aspire Higher: An Undocumented Student's Guide to College in Michigan",
       "category": "college",
       "asset_type": "Resource",
@@ -213,6 +228,7 @@
       "historical": true
     },
     {
+      "id": "asvab-career-exploration-program-counselor-guide",
       "title": "ASVAB Career Exploration Program Counselor Guide",
       "category": "military",
       "asset_type": "Resource",
@@ -227,6 +243,7 @@
       "historical": true
     },
     {
+      "id": "over-the-rainbow-a-career-development-group-for-lgbtq-teens",
       "title": "Over the Rainbow: A Career Development Group for LGBTQ+ Teens",
       "category": "career",
       "asset_type": "Research",
@@ -241,6 +258,7 @@
       "historical": true
     },
     {
+      "id": "nacac-guide-to-the-college-admission-process",
       "title": "NACAC Guide to the College Admission Process",
       "category": "college",
       "asset_type": "Resource",
@@ -255,6 +273,7 @@
       "historical": true
     },
     {
+      "id": "opa-public-release-fall-2024-propensity-update-youth-poll-study-findings",
       "title": "OPA Public Release Fall 2024 Propensity Update Youth Poll Study Findings",
       "category": "military",
       "asset_type": "Research",
@@ -269,6 +288,7 @@
       "historical": true
     },
     {
+      "id": "bls-periodic-table-of-stem-occupations",
       "title": "BLS Periodic Table of STEM Occupations",
       "category": "career",
       "asset_type": "Resource",
@@ -283,6 +303,7 @@
       "historical": true
     },
     {
+      "id": "ccrc-community-college-transfer-policy-fact-sheet",
       "title": "CCRC Community College Transfer Policy Fact Sheet",
       "category": "college",
       "asset_type": "Resource",
@@ -297,6 +318,7 @@
       "historical": true
     },
     {
+      "id": "futures-magazine-2025",
       "title": "FUTURES Magazine 2025",
       "category": "military",
       "asset_type": "Resource",
@@ -311,6 +333,7 @@
       "historical": true
     },
     {
+      "id": "michigan-works-oakland-county-registered-apprenticeships-guide",
       "title": "Michigan Works Oakland County Registered Apprenticeships Guide",
       "category": "career",
       "asset_type": "Resource",
@@ -325,6 +348,7 @@
       "historical": true
     },
     {
+      "id": "mcan-college-bound-michigan-resource-hub",
       "title": "MCAN College Bound Michigan Resource Hub",
       "category": "college",
       "asset_type": "Website",
@@ -339,6 +363,7 @@
       "historical": true
     },
     {
+      "id": "us-naval-sea-cadet-corps",
       "title": "US Naval Sea Cadet Corps",
       "category": "military",
       "asset_type": "Website",
@@ -353,6 +378,7 @@
       "historical": true
     },
     {
+      "id": "careeronestop-video-library",
       "title": "CareerOneStop Video Library",
       "category": "career",
       "asset_type": "Website",
@@ -367,6 +393,7 @@
       "historical": true
     },
     {
+      "id": "college-board-trends-in-college-pricing-and-student-aid-2025",
       "title": "College Board Trends in College Pricing and Student Aid 2025",
       "category": "college",
       "asset_type": "Report",
@@ -381,6 +408,7 @@
       "historical": true
     },
     {
+      "id": "today-s-military-asvab-test-overview",
       "title": "Today's Military ASVAB Test Overview",
       "category": "military",
       "asset_type": "Website",
@@ -395,6 +423,7 @@
       "historical": true
     },
     {
+      "id": "u-s-chamber-of-commerce-2025-new-hire-readiness-report",
       "title": "U.S. Chamber of Commerce 2025 New Hire Readiness Report",
       "category": "career",
       "asset_type": "Report",
@@ -409,6 +438,7 @@
       "historical": true
     },
     {
+      "id": "college-advising-essentials-volume-1",
       "title": "College Advising Essentials, Volume 1",
       "category": "college",
       "asset_type": "Resource",
@@ -423,6 +453,7 @@
       "historical": true
     },
     {
+      "id": "today-s-military-explore-careers",
       "title": "Today's Military Explore Careers",
       "category": "military",
       "asset_type": "Website",
@@ -437,6 +468,7 @@
       "historical": true
     },
     {
+      "id": "women-in-the-michigan-workforce-report",
       "title": "Women in the Michigan Workforce Report",
       "category": "career",
       "asset_type": "Report",
@@ -451,6 +483,7 @@
       "historical": true
     },
     {
+      "id": "college-advising-essentials-volume-2",
       "title": "College Advising Essentials, Volume 2",
       "category": "college",
       "asset_type": "Resource",
@@ -465,6 +498,7 @@
       "historical": true
     },
     {
+      "id": "today-s-military-military-requirements-page",
       "title": "Today's Military Military Requirements Page",
       "category": "military",
       "asset_type": "Website",
@@ -479,6 +513,7 @@
       "historical": true
     },
     {
+      "id": "casel-from-vision-to-action-portraits-of-a-graduate-report",
       "title": "CASEL From Vision to Action: Portraits of a Graduate Report",
       "category": "career",
       "asset_type": "Report",
@@ -493,6 +528,7 @@
       "historical": true
     },
     {
+      "id": "common-app-application-guide-for-first-year-students",
       "title": "Common App Application Guide for First-Year Students",
       "category": "college",
       "asset_type": "Resource",
@@ -507,6 +543,7 @@
       "historical": true
     },
     {
+      "id": "2025-26-first-year-requirements-grid",
       "title": "2025–26 First-Year Requirements Grid",
       "category": "college",
       "asset_type": "Resource",
@@ -520,6 +557,7 @@
       "used_date": null
     },
     {
+      "id": "michigan-career-development-model-reference-guide",
       "title": "Michigan Career Development Model Reference Guide",
       "category": "career",
       "asset_type": "Resource",
@@ -533,6 +571,7 @@
       "used_date": null
     },
     {
+      "id": "career-exploration-activities-individual-plans-of-study-tip-sheet",
       "title": "Career Exploration Activities: Individual Plans of Study Tip Sheet",
       "category": "career",
       "asset_type": "Resource",
@@ -546,6 +585,7 @@
       "used_date": null
     },
     {
+      "id": "questions-to-ask-a-military-recruiter",
       "title": "Questions to Ask a Military Recruiter",
       "category": "military",
       "asset_type": "Website",
