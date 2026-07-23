@@ -848,8 +848,11 @@
       function sortDate(value) { return value ? String(value) : ""; }
 
       function refreshCounts() {
-        var review = state.assets.filter(function (asset) { return !isUsed(asset); }).length;
-        var used = state.assets.filter(isUsed).length;
+        var visibleAssets = state.assets.filter(function (asset) {
+          return current(asset).review_status !== "not_approved";
+        });
+        var review = visibleAssets.filter(function (asset) { return !isUsed(asset); }).length;
+        var used = visibleAssets.filter(isUsed).length;
         document.getElementById("reviewCount").textContent = review;
         document.getElementById("usedCount").textContent = used;
         document.getElementById("sourceCount").textContent = state.assets.length + " assets in registry";
@@ -858,6 +861,7 @@
       function filteredAssets() {
         var items = state.assets.map(current).filter(function (asset) {
           var used = asset.used_for_exploration === true && Boolean(asset.used_date);
+          if (asset.review_status === "not_approved") return false;
           if (state.view === "used" ? !used : used) return false;
           if (state.category !== "all" && asset.category !== state.category) return false;
           return true;
