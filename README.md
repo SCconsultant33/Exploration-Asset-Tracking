@@ -1,26 +1,36 @@
 # Exploration Asset Tracking
 
-A static dashboard for reviewing college, career, and military exploration resources collected for Michigan K-12 school counselors.
+A lightweight GitHub Pages dashboard for reviewing K-12 counselor exploration resources and tracking which assets have been used.
 
-## Security model
+## Live dashboard
 
-This version does not require PowerShell, a local Node.js server, or any background process on the viewer's computer. It is designed to be hosted by GitHub Pages and reads the repository's `data/assets.json` file.
+The site is published from this repository with GitHub Pages. It does not require a local server, PowerShell launcher, database, or build process.
 
-Review statuses and notes are stored in the viewer's browser using `localStorage`. They are not committed to GitHub yet. A later phase can add authenticated, shared review persistence.
+## Data model
 
-## Data contract
+`data/assets.json` is the single canonical asset registry. It contains both newly discovered assets and previously used resources.
 
-`data/assets.json` contains:
+Each asset includes:
 
-```json
-{
-  "schema_version": "1.0",
-  "assets": []
-}
-```
+- title, publisher/source, category, summary, and URL
+- a standardized asset type such as `Report`, `Article`, `Blog`, `Research`, `Resource`, or `Website`
+- the closest known publication month/year
+- review status: `pending`, `not_approved`, or `approved`
+- whether it was used for an exploration activity and the date used
 
-Each scheduled-task asset may contain `title`, `category`, `asset_type`, `source`, `published_date`, `url`, `summary`, `discovered_date`, `review_status`, and `report_file`.
+The weekly discovery task must check the complete registry before adding anything so previously reviewed or used assets are not rediscovered.
 
-## Publishing
+## Dashboard workflow
 
-The included GitHub Actions workflow deploys the repository as a static Pages site when Pages is enabled for GitHub Actions in the repository settings. Confirm your organization's access policy before deployment because Pages visibility can differ from repository visibility.
+- **Review** contains assets that have not been marked used.
+- **Used** contains assets with an exploration-use date.
+- Open an asset to change its review status or record that it was used.
+- Dashboard edits are saved in the current browser using local storage.
+
+Because this is a static GitHub Pages site, browser edits do not write back to the repository. The JSON file remains the shared source for scheduled-task deduplication and the historical defaults shown by the dashboard. If cross-device editing is needed later, the project will need authenticated storage or a small backend.
+
+## Repository structure
+
+- `index.html` — self-contained dashboard
+- `data/assets.json` — unified asset registry
+- `.github/workflows/pages.yml` — GitHub Pages deployment
