@@ -580,9 +580,11 @@
       "url": "https://ies.ed.gov/sites/default/files/rel-central/document/2025/11/RELCETipCareerExploration.pdf",
       "summary": "This tip sheet presents field-tested middle and high school activities such as career fairs, internship bootcamps, client-connected projects, career research, and senior capstones.",
       "discovered_date": "2026-07-22",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-07-23T18:40:29.817Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "questions-to-ask-a-military-recruiter",
