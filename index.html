@@ -17,9 +17,9 @@
       --cyan: #00cfe3;
       --cyan-dark: #006d7b;
       --cyan-soft: #d9f8fb;
-      --magenta: #d31c81;
+      --magenta: #a80063;
       --magenta-soft: #ffe2f1;
-      --lime: #568500;
+      --lime: #3f6600;
       --lime-soft: #e9f8c9;
       --amber: #8a5a00;
       --amber-soft: #fff1c7;
@@ -41,6 +41,35 @@
     }
     button, input, select { font: inherit; }
     button { cursor: pointer; }
+    :focus-visible {
+      outline: 3px solid var(--navy);
+      outline-offset: 3px;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .skip-link {
+      position: fixed;
+      top: 8px;
+      left: 8px;
+      z-index: 100;
+      padding: 10px 14px;
+      border: 2px solid var(--cyan);
+      border-radius: 5px;
+      background: var(--navy);
+      color: white;
+      font-weight: 800;
+      transform: translateY(-160%);
+    }
+    .skip-link:focus { transform: translateY(0); }
     .shell { width: min(1240px, calc(100% - 32px)); margin: 0 auto; }
     header {
       position: sticky;
@@ -182,6 +211,14 @@
       padding: 15px 18px;
       background: var(--panel);
     }
+    .filter-field {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font: 800 10px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
     .control {
       width: 100%;
       min-height: 42px;
@@ -224,11 +261,14 @@
     .asset-row:hover, .asset-row:focus-visible {
       position: relative;
       z-index: 1;
-      outline: none;
       background: var(--cyan-soft);
       box-shadow: inset 4px 0 0 var(--cyan-dark);
     }
-    .asset-row:last-child { border-bottom: 0; }
+    .asset-row:focus-visible {
+      outline: 3px solid var(--navy);
+      outline-offset: -4px;
+    }
+    .asset-item:last-child .asset-row { border-bottom: 0; }
     .asset-main { min-width: 0; }
     .asset-title {
       margin: 0 0 5px;
@@ -315,8 +355,8 @@
     .asset-link { display: inline-block; margin-top: 8px; color: var(--cyan-dark); font-weight: 800; text-underline-offset: 3px; }
     .close {
       flex: 0 0 auto;
-      width: 38px;
-      height: 38px;
+      width: 44px;
+      height: 44px;
       border: 1px solid var(--line-strong);
       border-radius: 5px;
       background: var(--panel);
@@ -369,6 +409,20 @@
     .btn.primary { border-color: var(--navy); background: var(--navy); color: white; box-shadow: 3px 3px 0 var(--cyan); }
     .token-input { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
     .security-note { color: var(--muted); font-size: 13px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+    @media (forced-colors: active) {
+      .mark, .auth-button, .tab.active, .category-badge, .status, .asset-row:focus-visible {
+        forced-color-adjust: auto;
+      }
+      .persistence::before { border: 1px solid CanvasText; }
+    }
     @media (max-width: 900px) {
       .list-head, .asset-row { grid-template-columns: minmax(230px, 1fr) 112px 125px 110px 24px; gap: 10px; }
     }
@@ -393,69 +447,75 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <header>
     <div class="shell topbar">
       <div class="brand">
-        <div class="mark">EA</div>
+        <div class="mark" aria-hidden="true">EA</div>
         <div>
           <h1>Exploration Asset Tracking</h1>
           <p>Resource intelligence console</p>
         </div>
       </div>
       <div class="top-actions">
-        <div class="source-pill" id="sourceCount">Loading assets…</div>
+        <div class="source-pill" id="sourceCount" aria-live="polite">Loading assets…</div>
         <button class="auth-button" id="authButton" type="button">Save setup pending</button>
       </div>
     </div>
   </header>
 
-  <main class="shell">
+  <main class="shell" id="main-content" tabindex="-1">
     <section class="workspace" aria-label="Asset tracking">
       <nav class="tabs" aria-label="Asset views">
-        <button class="tab active" type="button" data-view="review">Review <span class="tab-count" id="reviewCount">0</span></button>
-        <button class="tab" type="button" data-view="used">Used <span class="tab-count" id="usedCount">0</span></button>
+        <button class="tab active" type="button" data-view="review" aria-pressed="true">Review <span class="tab-count" id="reviewCount">0</span></button>
+        <button class="tab" type="button" data-view="used" aria-pressed="false">Used <span class="tab-count" id="usedCount">0</span></button>
       </nav>
       <div class="persistence" id="persistenceState" role="status">Checking persistent save access…</div>
 
-      <div class="toolbar">
-        <select class="control" id="category" aria-label="Filter by category">
-          <option value="all">All categories</option>
-        </select>
-        <select class="control" id="statusFilter" aria-label="Filter by review status">
-          <option value="all">All review statuses</option>
-          <option value="pending">Pending</option>
-          <option value="not_approved">Not Approved</option>
-          <option value="approved">Approved</option>
-        </select>
+      <div class="toolbar" aria-label="Asset filters">
+        <label class="filter-field" for="category"><span>Category</span>
+          <select class="control" id="category">
+            <option value="all">All categories</option>
+          </select>
+        </label>
+        <label class="filter-field" for="statusFilter"><span>Review status</span>
+          <select class="control" id="statusFilter">
+            <option value="all">All review statuses</option>
+            <option value="pending">Pending</option>
+            <option value="not_approved">Not Approved</option>
+            <option value="approved">Approved</option>
+          </select>
+        </label>
       </div>
 
-      <div class="list-head">
+      <div class="list-head" aria-hidden="true">
         <span>Asset</span>
         <span>Category</span>
         <span id="dateHeading">Published</span>
         <span>Review status</span>
         <span></span>
       </div>
-      <div class="asset-list" id="assetList">
+      <div class="asset-list" id="assetList" role="list" aria-label="Assets" aria-busy="true">
         <div class="empty">Loading the asset registry…</div>
       </div>
     </section>
+    <div class="sr-only" id="saveAnnouncement" role="status" aria-live="polite"></div>
   </main>
 
 
-  <dialog id="authDialog">
+  <dialog id="authDialog" aria-labelledby="authDialogTitle" aria-describedby="authDialogDescription">
     <form method="dialog" id="authForm">
       <div class="modal-head">
         <div>
           <p class="eyebrow">Persistent saving</p>
-          <h2>Connect GitHub</h2>
+          <h2 id="authDialogTitle">Connect GitHub</h2>
           <p class="publisher">Use a repository-limited token to commit dashboard edits.</p>
         </div>
         <button class="close" value="cancel" aria-label="Close dialog">×</button>
       </div>
       <div class="modal-body">
-        <p class="summary">Create a fine-grained personal access token in GitHub. Give it access only to <strong>Exploration-Asset-Tracking</strong> with <strong>Contents: Read and write</strong>. The token stays in this browser tab session and is sent only to GitHub’s API.</p>
-        <p><a class="asset-link" href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener noreferrer">Create or manage GitHub tokens ↗</a></p>
+        <p class="summary" id="authDialogDescription">Create a fine-grained personal access token in GitHub. Give it access only to <strong>Exploration-Asset-Tracking</strong> with <strong>Contents: Read and write</strong>. The token stays in this browser tab session and is sent only to GitHub’s API.</p>
+        <p><a class="asset-link" href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener noreferrer">Create or manage GitHub tokens <span aria-hidden="true">↗</span></a></p>
         <label class="field">Fine-grained token
           <input class="control token-input" id="githubToken" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…">
         </label>
@@ -468,14 +528,14 @@
     </form>
   </dialog>
 
-  <dialog id="assetDialog">
+  <dialog id="assetDialog" aria-labelledby="modalTitle" aria-describedby="modalSummary">
     <form method="dialog" id="assetForm">
       <div class="modal-head">
         <div>
           <p class="eyebrow" id="modalCategory"></p>
           <h2 id="modalTitle"></h2>
           <p class="publisher" id="modalPublisher"></p>
-          <a class="asset-link" id="modalLink" href="#" target="_blank" rel="noopener noreferrer">Open asset ↗</a>
+          <a class="asset-link" id="modalLink" href="#" target="_blank" rel="noopener noreferrer">Open asset <span aria-hidden="true">↗</span></a>
         </div>
         <button class="close" value="cancel" aria-label="Close dialog">×</button>
       </div>
@@ -809,13 +869,18 @@
         }
         assetList.innerHTML = items.map(function (asset) {
           var shownDate = state.view === "used" ? formatDate(asset.used_date) : formatPublished(asset.published_date);
-          return '<button class="asset-row" type="button" data-id="' + escapeHtml(asset.id) + '">' +
+          var dateLabel = state.view === "used" ? "Date used" : "Published";
+          var accessibleName = "Open " + asset.title + ". Publisher: " + (asset.source || "Source not recorded") +
+            ". Category: " + categoryLabel(asset.category) + ". " + dateLabel + ": " + shownDate +
+            ". Review status: " + statusLabel(asset.review_status) + ".";
+          return '<div class="asset-item" role="listitem"><button class="asset-row" type="button" data-id="' + escapeHtml(asset.id) +
+            '" aria-label="' + escapeHtml(accessibleName) + '">' +
             '<div class="asset-main"><p class="asset-title">' + escapeHtml(asset.title) + '</p>' +
             '<div class="asset-meta">' + escapeHtml(asset.source || "Source not recorded") + '</div></div>' +
             '<span class="category-badge category-' + escapeHtml(categoryClass(asset.category)) + '">' + escapeHtml(categoryLabel(asset.category)) + '</span>' +
             '<div class="date-cell">' + escapeHtml(shownDate) + '</div>' +
             '<span class="status ' + escapeHtml(asset.review_status) + '">' + escapeHtml(statusLabel(asset.review_status)) + '</span>' +
-            '<span class="chevron">›</span></button>';
+            '<span class="chevron" aria-hidden="true">›</span></button></div>';
         }).join("");
         Array.prototype.forEach.call(assetList.querySelectorAll(".asset-row"), function (row) {
           row.addEventListener("click", function () { openAsset(row.getAttribute("data-id")); });
@@ -897,6 +962,7 @@
           assetDialog.close();
           render();
           updateAuthUi();
+          document.getElementById("saveAnnouncement").textContent = "Changes to " + result.asset.title + " were saved permanently to GitHub.";
         } catch (error) {
           message.textContent = error.message;
           setPersistence("The last edit remains queued because GitHub could not be updated.", "error");
@@ -946,6 +1012,7 @@
           state.view = tab.getAttribute("data-view");
           Array.prototype.forEach.call(document.querySelectorAll(".tab"), function (item) {
             item.classList.toggle("active", item === tab);
+            item.setAttribute("aria-pressed", item === tab ? "true" : "false");
           });
           render();
         });
@@ -964,6 +1031,7 @@
         })
         .then(function (data) {
           state.assets = Array.isArray(data) ? data : (data.assets || []);
+          assetList.setAttribute("aria-busy", "false");
           populateCategories();
           render();
           return checkStoredToken().then(function (authenticated) {
@@ -971,6 +1039,7 @@
           });
         })
         .catch(function (error) {
+          assetList.setAttribute("aria-busy", "false");
           document.getElementById("sourceCount").textContent = "Registry unavailable";
           assetList.innerHTML = '<div class="empty error"><strong>Could not load assets</strong>' + escapeHtml(error.message) + '</div>';
         });
