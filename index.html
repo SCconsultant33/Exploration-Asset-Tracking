@@ -61,6 +61,7 @@
     }
     .brand h1 { margin: 0; font: 700 19px/1.15 Georgia, serif; }
     .brand p { margin: 3px 0 0; color: var(--muted); font-size: 12px; }
+    .top-actions { display: flex; align-items: center; gap: 9px; }
     .source-pill {
       padding: 8px 12px;
       border: 1px solid var(--line);
@@ -69,6 +70,39 @@
       color: var(--muted);
       font-size: 13px;
     }
+    .auth-button {
+      min-height: 38px;
+      padding: 8px 13px;
+      border: 1px solid var(--green);
+      border-radius: 999px;
+      background: var(--green);
+      color: white;
+      font-size: 13px;
+      font-weight: 750;
+    }
+    .auth-button.secondary { background: var(--panel); color: var(--green); }
+    .auth-button:disabled { cursor: not-allowed; opacity: .58; }
+    .persistence {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 42px;
+      padding: 10px 18px;
+      border-bottom: 1px solid var(--line);
+      background: #faf7f0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .persistence::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+    .persistence.online::before { background: var(--green); }
+    .persistence.error::before { background: var(--red); }
     main { padding: 34px 0 64px; }
     .workspace {
       background: rgba(255,253,248,.78);
@@ -284,7 +318,10 @@
           <p>Review discoveries and record what has been used.</p>
         </div>
       </div>
-      <div class="source-pill" id="sourceCount">Loading assets…</div>
+      <div class="top-actions">
+        <div class="source-pill" id="sourceCount">Loading assets…</div>
+        <button class="auth-button" id="authButton" type="button">Save setup pending</button>
+      </div>
     </div>
   </header>
 
@@ -294,6 +331,7 @@
         <button class="tab active" type="button" data-view="review">Review <span class="tab-count" id="reviewCount">0</span></button>
         <button class="tab" type="button" data-view="used">Used <span class="tab-count" id="usedCount">0</span></button>
       </nav>
+      <div class="persistence" id="persistenceState" role="status">Checking persistent save access…</div>
 
       <div class="toolbar">
         <input class="control" id="search" type="search" placeholder="Search title, publisher, or summary…" aria-label="Search assets">
@@ -365,11 +403,20 @@
     </form>
   </dialog>
 
+  <script src="./config.js"></script>
   <script>
     (function () {
       "use strict";
 
-      var state = { assets: [], view: "review", category: "all", status: "all", query: "", selectedId: null };
+      var config = window.EXPLORATION_ASSET_CONFIG || {};
+      var state = {
+        assets: [], view: "review", category: "all", status: "all", query: "", selectedId: null,
+        apiBase: String(config.apiBase || "").replace(/\/$/, ""),
+        session: sessionStorage.getItem("exploration-asset-session") || "",
+        authenticated: false,
+        login: null,
+        saving: false
+      };
       var storagePrefix = "exploration-asset-tracking:";
       var assetList = document.getElementById("assetList");
       var dialog = document.getElementById("assetDialog");
@@ -401,6 +448,118 @@
           used_for_exploration: local.used_for_exploration != null ? Boolean(local.used_for_exploration) : Boolean(asset.used_for_exploration),
           used_date: local.used_date !== undefined ? local.used_date : asset.used_date
         });
+      }
+
+      function captureSession() {
+        var match = location.hash.match(/(?:^#|&)session=([^&]+)/);
+        if (!match) return;
+        state.session = decodeURIComponent(match[1]);
+        sessionStorage.setItem("exploration-asset-session", state.session);
+        history.replaceState(null, "", location.pathname + location.search);
+      }
+
+      function queuedCount() {
+        return state.assets.filter(function (asset) {
+          return Boolean(localStorage.getItem(storagePrefix + asset.id));
+        }).length;
+      }
+
+      function setPersistence(message, status) {
+        var element = document.getElementById("persistenceState");
+        element.textContent = message;
+        element.className = "persistence" + (status ? " " + status : "");
+      }
+
+      function updateAuthUi() {
+        var button = document.getElementById("authButton");
+        if (!state.apiBase) {
+          button.textContent = "Save setup pending";
+          button.disabled = true;
+          button.className = "auth-button";
+          setPersistence("Secure repository saving is not configured yet. Edits remain queued in this browser.", "");
+          return;
+        }
+        button.disabled = false;
+        button.textContent = state.authenticated ? "Sign out " + state.login : "Sign in with GitHub";
+        button.className = "auth-button" + (state.authenticated ? " secondary" : "");
+        var queued = queuedCount();
+        if (state.authenticated) {
+          setPersistence(queued ? "Signed in. " + queued + " browser edit" + (queued === 1 ? "" : "s") + " waiting to sync." : "Changes save directly to the GitHub asset registry.", "online");
+        } else {
+          setPersistence(queued ? queued + " edit" + (queued === 1 ? " is" : "s are") + " queued. Sign in to commit to GitHub." : "Sign in with GitHub to save changes permanently.", "");
+        }
+      }
+
+      function authHeaders() {
+        return { "Authorization": "Bearer " + state.session, "Content-Type": "application/json" };
+      }
+
+      async function checkSession() {
+        if (!state.apiBase || !state.session) {
+          state.authenticated = false;
+          updateAuthUi();
+          return false;
+        }
+        try {
+          var response = await fetch(state.apiBase + "/api/session", { headers: authHeaders(), cache: "no-store" });
+          if (!response.ok) throw new Error("Session expired");
+          var result = await response.json();
+          state.authenticated = true;
+          state.login = result.login;
+          updateAuthUi();
+          return true;
+        } catch (error) {
+          state.session = "";
+          state.authenticated = false;
+          state.login = null;
+          sessionStorage.removeItem("exploration-asset-session");
+          updateAuthUi();
+          return false;
+        }
+      }
+
+      async function updateRemote(assetId, changes) {
+        var response = await fetch(state.apiBase + "/api/assets/" + encodeURIComponent(assetId), {
+          method: "PATCH",
+          headers: authHeaders(),
+          body: JSON.stringify(changes)
+        });
+        var result = {};
+        try { result = await response.json(); } catch (error) {}
+        if (!response.ok) throw new Error(result.error || "The GitHub update failed.");
+        return result;
+      }
+
+      function applySavedAsset(saved) {
+        var index = state.assets.findIndex(function (asset) { return asset.id === saved.id; });
+        if (index >= 0) state.assets[index] = saved;
+        localStorage.removeItem(storagePrefix + saved.id);
+      }
+
+      async function syncQueuedChanges() {
+        if (!state.authenticated) return;
+        var queued = state.assets.filter(function (asset) {
+          return Boolean(localStorage.getItem(storagePrefix + asset.id));
+        });
+        if (!queued.length) return;
+        setPersistence("Syncing " + queued.length + " queued browser edit" + (queued.length === 1 ? "" : "s") + " to GitHub…", "");
+        for (var i = 0; i < queued.length; i += 1) {
+          var asset = current(queued[i]);
+          try {
+            var result = await updateRemote(asset.id, {
+              review_status: asset.review_status,
+              used_for_exploration: Boolean(asset.used_for_exploration),
+              used_date: asset.used_for_exploration ? asset.used_date : null
+            });
+            applySavedAsset(result.asset);
+          } catch (error) {
+            setPersistence("A queued edit could not be synced: " + error.message, "error");
+            render();
+            return;
+          }
+        }
+        render();
+        updateAuthUi();
       }
 
       function isUsed(asset) {
@@ -521,23 +680,55 @@
         if (!event.target.checked) dateInput.value = "";
       });
 
-      document.getElementById("saveAsset").addEventListener("click", function () {
+      document.getElementById("saveAsset").addEventListener("click", async function () {
         var original = state.assets.find(function (asset) { return asset.id === state.selectedId; });
-        if (!original) return;
+        if (!original || state.saving) return;
         var used = document.getElementById("editUsed").checked;
         var usedDate = document.getElementById("editUsedDate").value;
+        var message = document.getElementById("formMessage");
+        var saveButton = document.getElementById("saveAsset");
         if (used && !usedDate) {
-          document.getElementById("formMessage").textContent = "Add the date this asset was used.";
+          message.textContent = "Add the date this asset was used.";
           return;
         }
-        localStorage.setItem(storagePrefix + original.id, JSON.stringify({
+
+        var changes = {
           review_status: document.getElementById("editStatus").value,
           used_for_exploration: used,
           used_date: used ? usedDate : null,
           last_updated_at: new Date().toISOString()
-        }));
-        dialog.close();
+        };
+        localStorage.setItem(storagePrefix + original.id, JSON.stringify(changes));
         render();
+        updateAuthUi();
+
+        if (!state.apiBase) {
+          dialog.close();
+          return;
+        }
+        if (!state.authenticated) {
+          message.textContent = "This edit is queued. Sign in with GitHub to save it permanently.";
+          return;
+        }
+
+        state.saving = true;
+        saveButton.disabled = true;
+        saveButton.textContent = "Saving…";
+        message.textContent = "";
+        try {
+          var result = await updateRemote(original.id, changes);
+          applySavedAsset(result.asset);
+          dialog.close();
+          render();
+          updateAuthUi();
+        } catch (error) {
+          message.textContent = error.message;
+          setPersistence("The last edit is still queued in this browser because GitHub could not be updated.", "error");
+        } finally {
+          state.saving = false;
+          saveButton.disabled = false;
+          saveButton.textContent = "Save changes";
+        }
       });
 
       Array.prototype.forEach.call(document.querySelectorAll(".tab"), function (tab) {
@@ -554,7 +745,26 @@
       document.getElementById("category").addEventListener("change", function (event) { state.category = event.target.value; render(); });
       statusFilter.addEventListener("change", function (event) { state.status = event.target.value; render(); });
 
-      fetch("./data/assets.json", { cache: "no-store" })
+      document.getElementById("authButton").addEventListener("click", function () {
+        if (!state.apiBase) return;
+        if (state.authenticated) {
+          state.session = "";
+          state.authenticated = false;
+          state.login = null;
+          sessionStorage.removeItem("exploration-asset-session");
+          updateAuthUi();
+          return;
+        }
+        var returnTo = location.origin + location.pathname;
+        location.href = state.apiBase + "/auth/login?return_to=" + encodeURIComponent(returnTo);
+      });
+
+      captureSession();
+      updateAuthUi();
+
+      var registryUrl = config.registryUrl || "./data/assets.json";
+      registryUrl += (registryUrl.indexOf("?") >= 0 ? "&" : "?") + "v=" + Date.now();
+      fetch(registryUrl, { cache: "no-store" })
         .then(function (response) {
           if (!response.ok) throw new Error("Asset registry could not be loaded.");
           return response.json();
@@ -563,6 +773,9 @@
           state.assets = Array.isArray(data) ? data : (data.assets || []);
           populateCategories();
           render();
+          return checkSession().then(function (authenticated) {
+            if (authenticated) return syncQueuedChanges();
+          });
         })
         .catch(function (error) {
           document.getElementById("sourceCount").textContent = "Registry unavailable";
