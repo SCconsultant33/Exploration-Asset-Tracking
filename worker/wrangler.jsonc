@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "exploration-asset-tracking-api",
+  "main": "src/index.js",
+  "compatibility_date": "2026-07-23",
+  "vars": {
+    "ALLOWED_ORIGIN": "https://scconsultant33.github.io",
+    "DASHBOARD_URL": "https://scconsultant33.github.io/Exploration-Asset-Tracking/",
+    "GITHUB_OWNER": "SCconsultant33",
+    "GITHUB_REPO": "Exploration-Asset-Tracking",
+    "ALLOWED_GITHUB_LOGIN": "SCconsultant33"
+  }
+}
