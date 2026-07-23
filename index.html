@@ -37,7 +37,7 @@
         radial-gradient(circle at 88% 4%, rgba(0, 207, 227, .16), transparent 28rem),
         var(--paper);
       background-size: 34px 34px, 34px 34px, auto, auto;
-      font: 15px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font: 16px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
     button, input, select { font: inherit; }
     button { cursor: pointer; }
@@ -114,7 +114,7 @@
     .brand p {
       margin: 4px 0 0;
       color: var(--muted);
-      font: 700 10px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace;
+      font: 700 12px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace;
       letter-spacing: .12em;
       text-transform: uppercase;
     }
@@ -125,7 +125,7 @@
       border-radius: 5px;
       background: var(--panel);
       color: var(--muted);
-      font: 700 12px/1.3 ui-monospace, SFMono-Regular, Consolas, monospace;
+      font: 700 13px/1.3 ui-monospace, SFMono-Regular, Consolas, monospace;
     }
     .auth-button {
       min-height: 38px;
@@ -149,12 +149,20 @@
       background: rgba(255, 255, 255, .93);
       box-shadow: var(--shadow);
     }
-    .tabs {
+    .workspace-head {
       display: flex;
-      gap: 4px;
-      padding: 13px 16px 0;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
       border-bottom: 1px solid var(--line);
       background: var(--panel-alt);
+    }
+    .tabs {
+      display: flex;
+      flex: 1 1 auto;
+      gap: 4px;
+      padding: 13px 16px 0;
+      background: transparent;
     }
     .tab {
       padding: 11px 16px 13px;
@@ -162,7 +170,7 @@
       border-bottom: 3px solid transparent;
       background: transparent;
       color: var(--muted);
-      font: 800 12px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace;
+      font: 800 14px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace;
       letter-spacing: .06em;
       text-transform: uppercase;
     }
@@ -205,19 +213,22 @@
     .persistence.error::before { background: var(--red); }
     .toolbar {
       display: grid;
-      grid-template-columns: 190px 190px;
-      justify-content: end;
-      gap: 10px;
-      padding: 15px 18px;
-      background: var(--panel);
+      grid-template-columns: 220px;
+      flex: 0 0 auto;
+      padding: 10px 18px 10px 0;
+      background: transparent;
     }
     .filter-field {
       display: grid;
       gap: 6px;
       color: var(--muted);
-      font: 800 10px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace;
+      font: 800 12px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace;
       letter-spacing: .08em;
       text-transform: uppercase;
+    }
+    .filter-field .control {
+      font-size: 15px;
+      text-transform: none;
     }
     .control {
       width: 100%;
@@ -234,15 +245,21 @@
       display: grid;
       grid-template-columns: minmax(300px, 1fr) 125px 145px 130px 32px;
       gap: 14px;
-      padding: 11px 20px;
+      padding: 13px 20px;
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line-strong);
       background: var(--navy);
       color: #b9d9df;
-      font: 800 10px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace;
+      font: 800 12px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace;
       letter-spacing: .1em;
       text-transform: uppercase;
     }
+    .workspace.used-view .list-head,
+    .workspace.used-view .asset-row {
+      grid-template-columns: minmax(300px, 1fr) 125px 145px 32px;
+    }
+    .workspace.used-view .status-heading,
+    .workspace.used-view .status-cell { display: none; }
     .asset-list { min-height: 320px; }
     .asset-row {
       display: grid;
@@ -282,7 +299,7 @@
     .asset-meta {
       overflow: hidden;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 13px;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
@@ -294,7 +311,7 @@
       padding: 6px 9px;
       border: 1px solid currentColor;
       border-radius: 4px;
-      font: 800 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+      font: 800 12px/1 ui-monospace, SFMono-Regular, Consolas, monospace;
       letter-spacing: .05em;
       text-transform: uppercase;
     }
@@ -309,7 +326,7 @@
       padding: 6px 9px;
       border: 1px solid transparent;
       border-radius: 4px;
-      font: 800 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+      font: 800 12px/1 ui-monospace, SFMono-Regular, Consolas, monospace;
       letter-spacing: .02em;
       text-transform: uppercase;
     }
@@ -376,7 +393,7 @@
       display: block;
       margin-bottom: 4px;
       color: var(--muted);
-      font: 800 10px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace;
+      font: 800 12px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace;
       letter-spacing: .08em;
       text-transform: uppercase;
     }
@@ -385,7 +402,7 @@
     label.field {
       display: block;
       color: var(--muted);
-      font: 800 11px/1.3 ui-monospace, SFMono-Regular, Consolas, monospace;
+      font: 800 12px/1.3 ui-monospace, SFMono-Regular, Consolas, monospace;
       letter-spacing: .06em;
       text-transform: uppercase;
     }
@@ -425,11 +442,15 @@
     }
     @media (max-width: 900px) {
       .list-head, .asset-row { grid-template-columns: minmax(230px, 1fr) 112px 125px 110px 24px; gap: 10px; }
+      .workspace.used-view .list-head,
+      .workspace.used-view .asset-row { grid-template-columns: minmax(230px, 1fr) 112px 125px 24px; }
     }
     @media (max-width: 720px) {
       .shell { width: min(100% - 20px, 1240px); }
       .source-pill { display: none; }
-      .toolbar { grid-template-columns: 1fr 1fr; }
+      .workspace-head { align-items: stretch; flex-wrap: wrap; gap: 0; }
+      .tabs { min-width: 100%; }
+      .toolbar { width: 100%; grid-template-columns: 1fr; padding: 10px 15px 14px; }
       .list-head { display: none; }
       .asset-row { grid-template-columns: minmax(0, 1fr) auto; gap: 9px 12px; padding: 15px; }
       .asset-row .category-badge { grid-column: 1; }
@@ -466,33 +487,26 @@
 
   <main class="shell" id="main-content" tabindex="-1">
     <section class="workspace" aria-label="Asset tracking">
-      <nav class="tabs" aria-label="Asset views">
-        <button class="tab active" type="button" data-view="review" aria-pressed="true">Review <span class="tab-count" id="reviewCount">0</span></button>
-        <button class="tab" type="button" data-view="used" aria-pressed="false">Used <span class="tab-count" id="usedCount">0</span></button>
-      </nav>
-      <div class="persistence" id="persistenceState" role="status">Checking persistent save access…</div>
-
-      <div class="toolbar" aria-label="Asset filters">
-        <label class="filter-field" for="category"><span>Category</span>
-          <select class="control" id="category">
-            <option value="all">All categories</option>
-          </select>
-        </label>
-        <label class="filter-field" for="statusFilter"><span>Review status</span>
-          <select class="control" id="statusFilter">
-            <option value="all">All review statuses</option>
-            <option value="pending">Pending</option>
-            <option value="not_approved">Not Approved</option>
-            <option value="approved">Approved</option>
-          </select>
-        </label>
+      <div class="workspace-head">
+        <nav class="tabs" aria-label="Asset views">
+          <button class="tab active" type="button" data-view="review" aria-pressed="true">Review <span class="tab-count" id="reviewCount">0</span></button>
+          <button class="tab" type="button" data-view="used" aria-pressed="false">Used <span class="tab-count" id="usedCount">0</span></button>
+        </nav>
+        <div class="toolbar" aria-label="Asset filters">
+          <label class="filter-field" for="category"><span>Category</span>
+            <select class="control" id="category">
+              <option value="all">All categories</option>
+            </select>
+          </label>
+        </div>
       </div>
+      <div class="sr-only" id="persistenceState" role="status" aria-live="polite"></div>
 
       <div class="list-head" aria-hidden="true">
         <span>Asset</span>
         <span>Category</span>
         <span id="dateHeading">Published</span>
-        <span>Review status</span>
+        <span class="status-heading">Review status</span>
         <span></span>
       </div>
       <div class="asset-list" id="assetList" role="list" aria-label="Assets" aria-busy="true">
@@ -585,7 +599,6 @@
         assets: [],
         view: "review",
         category: "all",
-        status: "all",
         selectedId: null,
         githubToken: sessionStorage.getItem(tokenKey) || "",
         authenticated: false,
@@ -595,7 +608,6 @@
       var assetList = document.getElementById("assetList");
       var assetDialog = document.getElementById("assetDialog");
       var authDialog = document.getElementById("authDialog");
-      var statusFilter = document.getElementById("statusFilter");
 
       function escapeHtml(value) {
         return String(value == null ? "" : value)
@@ -649,7 +661,7 @@
       function setPersistence(message, status) {
         var element = document.getElementById("persistenceState");
         element.textContent = message;
-        element.className = "persistence" + (status ? " " + status : "");
+        element.className = "sr-only";
       }
 
       function updateAuthUi() {
@@ -848,7 +860,6 @@
           var used = asset.used_for_exploration === true && Boolean(asset.used_date);
           if (state.view === "used" ? !used : used) return false;
           if (state.category !== "all" && asset.category !== state.category) return false;
-          if (state.view === "review" && state.status !== "all" && asset.review_status !== state.status) return false;
           return true;
         });
         items.sort(function (a, b) {
@@ -862,7 +873,8 @@
         refreshCounts();
         var items = filteredAssets();
         document.getElementById("dateHeading").textContent = state.view === "used" ? "Date used" : "Published";
-        statusFilter.style.display = state.view === "review" ? "" : "none";
+        document.querySelector(".workspace").classList.toggle("used-view", state.view === "used");
+        assetList.setAttribute("aria-label", state.view === "used" ? "Used assets" : "Assets awaiting review");
         if (!items.length) {
           assetList.innerHTML = '<div class="empty"><strong>No matching assets</strong>Try changing the filters.</div>';
           return;
@@ -872,14 +884,14 @@
           var dateLabel = state.view === "used" ? "Date used" : "Published";
           var accessibleName = "Open " + asset.title + ". Publisher: " + (asset.source || "Source not recorded") +
             ". Category: " + categoryLabel(asset.category) + ". " + dateLabel + ": " + shownDate +
-            ". Review status: " + statusLabel(asset.review_status) + ".";
+            (state.view === "review" ? ". Review status: " + statusLabel(asset.review_status) : "") + ".";
           return '<div class="asset-item" role="listitem"><button class="asset-row" type="button" data-id="' + escapeHtml(asset.id) +
             '" aria-label="' + escapeHtml(accessibleName) + '">' +
             '<div class="asset-main"><p class="asset-title">' + escapeHtml(asset.title) + '</p>' +
             '<div class="asset-meta">' + escapeHtml(asset.source || "Source not recorded") + '</div></div>' +
             '<span class="category-badge category-' + escapeHtml(categoryClass(asset.category)) + '">' + escapeHtml(categoryLabel(asset.category)) + '</span>' +
             '<div class="date-cell">' + escapeHtml(shownDate) + '</div>' +
-            '<span class="status ' + escapeHtml(asset.review_status) + '">' + escapeHtml(statusLabel(asset.review_status)) + '</span>' +
+            '<span class="status status-cell ' + escapeHtml(asset.review_status) + '">' + escapeHtml(statusLabel(asset.review_status)) + '</span>' +
             '<span class="chevron" aria-hidden="true">›</span></button></div>';
         }).join("");
         Array.prototype.forEach.call(assetList.querySelectorAll(".asset-row"), function (row) {
@@ -1019,7 +1031,6 @@
       });
 
       document.getElementById("category").addEventListener("change", function (event) { state.category = event.target.value; render(); });
-      statusFilter.addEventListener("change", function (event) { state.status = event.target.value; render(); });
 
       updateAuthUi();
       var registryUrl = config.registryUrl || "./data/assets.json";
