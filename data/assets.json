@@ -654,9 +654,11 @@
       "url": "https://www.bls.gov/k12/students/careers/how-can-bls-help-me-explore-careers.pdf",
       "summary": "This student-facing guide directs counselors to free federal occupation profiles, classroom activities, videos, pay and outlook data, and pathways including apprenticeships and Job Corps.",
       "discovered_date": "2026-08-10",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-08-12T12:12:17.838Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "bls-military-careers",
