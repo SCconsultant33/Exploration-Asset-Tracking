@@ -610,9 +610,11 @@
       "url": "https://financialaidtoolkit.ed.gov/resources/2026-27-counselors-handbook.pdf",
       "summary": "This annual federal guide equips high school counselors and mentors to explain aid types and eligibility, prepare students and contributors for the 2026–27 FAFSA, and support follow-up after submission.",
       "discovered_date": "2026-08-10",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-08-12T12:11:06.468Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "education-pays-2026",
