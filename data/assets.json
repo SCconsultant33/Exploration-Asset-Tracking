@@ -552,9 +552,11 @@
       "url": "https://content.commonapp.org/Files/ReqGrid.pdf",
       "summary": "This comparison grid lists first-year application requirements across Common App member colleges, including deadlines, fees, testing policies, essays, portfolios, and recommendation requirements.",
       "discovered_date": "2026-07-22",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-08-12T12:20:04.889Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "michigan-career-development-model-reference-guide",
