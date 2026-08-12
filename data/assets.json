@@ -750,9 +750,11 @@
       "url": "https://www.militaryonesource.mil/military-basics/new-to-the-military/becoming-a-military-officer/",
       "summary": "This current overview compares ROTC, service academies, officer candidate school, Coast Guard pathways, eligibility, scholarships, and service commitments for college-bound students considering commissioned service.",
       "discovered_date": "2026-08-12",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-08-12T11:59:41.124Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "law-public-safety-corrections-and-security",
