@@ -626,9 +626,11 @@
       "url": "https://research.collegeboard.org/media/pdf/education-pays-2026-full-report.pdf",
       "summary": "This report provides current evidence on college enrollment, completion, earnings, employment, and disparities that counselors can use for balanced conversations about postsecondary value and fit.",
       "discovered_date": "2026-08-10",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-08-12T12:12:55.218Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "guiding-the-way-school-counselors-on-career-readiness",
