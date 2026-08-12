@@ -642,9 +642,11 @@
       "url": "https://cms.britebound.org/wp-content/uploads/2026/06/GuidingtheWay_SchoolCounselorsonCareerReadiness.pdf",
       "summary": "This national survey of 600 K–12 counselors identifies grade-band priorities, access gaps, resource needs, collaboration constraints, and emerging AI use in career-readiness programs.",
       "discovered_date": "2026-08-10",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-08-12T12:14:22.217Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "bls-career-resource-guide",
