@@ -672,9 +672,11 @@
       "url": "https://www.bls.gov/ooh/military/military-careers.htm",
       "summary": "This neutral federal overview compares enlisted and officer roles, work settings, preparation, training, pay, risks, and civilian occupation crosswalks for informed student exploration.",
       "discovered_date": "2026-08-10",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-08-12T12:13:25.522Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "requirements-to-join-the-us-military",
