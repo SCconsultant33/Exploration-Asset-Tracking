@@ -722,9 +722,11 @@
       "url": "https://www.michigan.gov/mde/-/media/Project/Websites/mde/CTE/cte_instructional/EDP_Fundamentals_Guide_.pdf?hash=CFC7B62D6C5C10C566F919E1DE5A9F9A&rev=4915c9294b9345e386289df2590329dd",
       "summary": "Michigan’s revised guide details the grade 7 launch, annual updates, statutory elements, talent portfolios, career clusters, work-based learning, and counselor responsibilities for student Educational Development Plans.",
       "discovered_date": "2026-08-12",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-08-12T12:01:34.547Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "perceptions-of-career-technical-education-a-research-update",
