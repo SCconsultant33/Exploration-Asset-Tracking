@@ -742,9 +742,11 @@
       "url": "https://careertech.org/wp-content/uploads/2025/10/Webinar-Presentation-Perceptions-Research-Update.pdf",
       "summary": "This 2025 national perceptions update shows what parents value in CTE, persistent participation misconceptions, and tested messages counselors can use when discussing hands-on career pathways.",
       "discovered_date": "2026-08-12",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-08-12T12:10:05.582Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "becoming-an-officer-in-the-military-after-college",
