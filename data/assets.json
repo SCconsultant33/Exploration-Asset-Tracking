@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "updated_at": "2026-08-12",
+  "updated_at": "2026-08-19",
   "assets": [
     {
       "id": "2025-state-of-the-future-us-workforce",
@@ -797,6 +797,90 @@
       "used_date": null,
       "last_updated_at": "2026-08-12T12:03:30.577Z",
       "last_updated_by": "SCconsultant33"
+    },
+    {
+      "id": "steps-for-students-filling-out-the-2026-27-fafsa-form",
+      "title": "Steps for Students Filling Out the 2026–27 FAFSA Form",
+      "category": "college",
+      "asset_type": "Article",
+      "source": "Federal Student Aid, U.S. Department of Education",
+      "published_date": null,
+      "url": "https://studentaid.gov/articles/fafsa-student-steps/",
+      "summary": "This current walkthrough explains each student section of the 2026–27 FAFSA, contributor invitations, dependency questions, financial entries, and school selection so counselors can prepare seniors and troubleshoot common completion errors.",
+      "discovered_date": "2026-08-19",
+      "review_status": "pending",
+      "used_for_exploration": false,
+      "used_date": null
+    },
+    {
+      "id": "common-app-writing-guide-for-counselors-and-teachers",
+      "title": "Writing Guide for Counselors and Teachers",
+      "category": "college",
+      "asset_type": "Resource",
+      "source": "Common App",
+      "published_date": "2025-07",
+      "url": "https://www.commonapp.org/files/recommender-resources/Resource_REC_WritingGuide_ENG_2025.07.08.pdf",
+      "summary": "This concise guide distinguishes counselor and teacher recommendation roles and gives concrete examples for describing leadership, academic achievement, context, and student fit in college application letters.",
+      "discovered_date": "2026-08-19",
+      "review_status": "pending",
+      "used_for_exploration": false,
+      "used_date": null
+    },
+    {
+      "id": "producing-the-goods-of-the-future-job-opportunities-in-manufacturing",
+      "title": "Producing the Goods of the Future: Job Opportunities in Manufacturing",
+      "category": "career",
+      "asset_type": "Article",
+      "source": "U.S. Bureau of Labor Statistics",
+      "published_date": "2026-05",
+      "url": "https://www.bls.gov/careeroutlook/2026/article/manufacturing.htm",
+      "summary": "This current federal outlook compares growing manufacturing industries and occupations, projected openings, wages, and education or training requirements, giving counselors data for exploring technical and degree-based pathways.",
+      "discovered_date": "2026-08-19",
+      "review_status": "pending",
+      "used_for_exploration": false,
+      "used_date": null
+    },
+    {
+      "id": "michigan-career-outlook-through-2032",
+      "title": "Michigan Career Outlook Through 2032",
+      "category": "career",
+      "asset_type": "Report",
+      "source": "Michigan Center for Data and Analytics",
+      "published_date": "2024-09",
+      "url": "https://www.michigan.gov/mcda/-/media/Project/Websites/mcda/reports/2024/Michigan-Career-Outlook-through-2032.pdf?rev=0024b2ca17994d3b967adc3c275754cb",
+      "summary": "This state report organizes Michigan’s in-demand occupations by education and training level and highlights STEM pathways, helping counselors connect student plans with projected openings and wage ranges.",
+      "discovered_date": "2026-08-19",
+      "review_status": "pending",
+      "used_for_exploration": false,
+      "used_date": null
+    },
+    {
+      "id": "learn-about-the-us-military-branches",
+      "title": "Learn About the U.S. Military Branches",
+      "category": "military",
+      "asset_type": "Website",
+      "source": "USAGov, U.S. General Services Administration",
+      "published_date": "2025-08",
+      "url": "https://www.usa.gov/us-military",
+      "summary": "This neutral federal comparison summarizes the six service branches, their missions, member names, reserve components, and special operations, supporting an introductory counselor-led exploration of military options.",
+      "discovered_date": "2026-08-19",
+      "review_status": "pending",
+      "used_for_exploration": false,
+      "used_date": null
+    },
+    {
+      "id": "military-tuition-assistance",
+      "title": "Military Tuition Assistance",
+      "category": "military",
+      "asset_type": "Website",
+      "source": "USAGov, U.S. General Services Administration",
+      "published_date": "2025-08",
+      "url": "https://www.usa.gov/military-tuition-assistance",
+      "summary": "This federal guide explains ROTC and branch scholarship programs, service commitments, Coast Guard college pathways, and education benefits so counselors can discuss military-connected college funding accurately.",
+      "discovered_date": "2026-08-19",
+      "review_status": "pending",
+      "used_for_exploration": false,
+      "used_date": null
     }
   ]
 }
