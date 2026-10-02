@@ -822,9 +822,11 @@
       "url": "https://www.commonapp.org/files/recommender-resources/Resource_REC_WritingGuide_ENG_2025.07.08.pdf",
       "summary": "This concise guide distinguishes counselor and teacher recommendation roles and gives concrete examples for describing leadership, academic achievement, context, and student fit in college application letters.",
       "discovered_date": "2026-08-19",
-      "review_status": "pending",
-      "used_for_exploration": false,
-      "used_date": null
+      "review_status": "approved",
+      "used_for_exploration": true,
+      "used_date": "2026-10-05",
+      "last_updated_at": "2026-10-02T12:37:28.361Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "producing-the-goods-of-the-future-job-opportunities-in-manufacturing",
