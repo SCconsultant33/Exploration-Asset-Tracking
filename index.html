@@ -695,19 +695,45 @@
         return repoApiUrl() + "/contents/" + String(config.githubPath || "data/assets.json").split("/").map(encodeURIComponent).join("/");
       }
 
+      function branchName() {
+        return String(config.githubBranch || "main");
+      }
+
+      function githubApiError(response, payload, action) {
+        var githubMessage = payload && payload.message ? String(payload.message) : "";
+        var message;
+        if (response.status === 401) {
+          message = "GitHub rejected this token. It may be expired or revoked. Reconnect with a new fine-grained token.";
+        } else if (response.status === 403) {
+          message = "GitHub denied the " + action + ". Reconnect with a fine-grained token configured for Only select repositories → Exploration-Asset-Tracking and Repository permissions → Contents: Read and write. This edit remains queued in this browser; data/assets.json was not updated.";
+        } else if (response.status === 404) {
+          message = "GitHub could not find the configured repository or data/assets.json with this token. Confirm that Exploration-Asset-Tracking is selected for the token.";
+        } else {
+          message = githubMessage || ("GitHub could not complete the " + action + ".");
+        }
+        var error = new Error(message);
+        error.status = response.status;
+        error.githubMessage = githubMessage;
+        return error;
+      }
+
       async function validateToken(token) {
+        var registryUrl = contentsApiUrl() + "?ref=" + encodeURIComponent(branchName()) + "&t=" + Date.now();
         var responses = await Promise.all([
           fetch("https://api.github.com/user", { headers: githubHeaders(token), cache: "no-store" }),
-          fetch(repoApiUrl(), { headers: githubHeaders(token), cache: "no-store" })
+          fetch(repoApiUrl(), { headers: githubHeaders(token), cache: "no-store" }),
+          fetch(registryUrl, { headers: githubHeaders(token), cache: "no-store" })
         ]);
         var user = await responses[0].json();
         var repo = await responses[1].json();
-        if (!responses[0].ok) throw new Error("GitHub did not accept this token.");
+        var registryFile = await responses[2].json();
+        if (!responses[0].ok) throw githubApiError(responses[0], user, "token check");
         if (String(user.login).toLowerCase() !== String(config.allowedLogin).toLowerCase()) {
           throw new Error("This token belongs to a different GitHub account.");
         }
-        if (!responses[1].ok || !repo.permissions || !repo.permissions.push) {
-          throw new Error("The token does not have write access to this repository.");
+        if (!responses[1].ok) throw githubApiError(responses[1], repo, "repository check");
+        if (!responses[2].ok || !registryFile.sha || !registryFile.content) {
+          throw githubApiError(responses[2], registryFile, "registry check");
         }
         state.githubToken = token;
         state.authenticated = true;
@@ -758,14 +784,19 @@
 
       async function updateRemote(assetId, changes) {
         for (var attempt = 0; attempt < 2; attempt += 1) {
-          var readResponse = await fetch(contentsApiUrl() + "?ref=main&t=" + Date.now(), {
+          var readResponse = await fetch(contentsApiUrl() + "?ref=" + encodeURIComponent(branchName()) + "&t=" + Date.now(), {
             headers: githubHeaders(state.githubToken),
             cache: "no-store"
           });
           var file = await readResponse.json();
-          if (!readResponse.ok) throw new Error(file.message || "The asset registry could not be read.");
+          if (!readResponse.ok) throw githubApiError(readResponse, file, "registry read");
 
-          var registry = JSON.parse(decodeBase64(file.content));
+          var registry;
+          try {
+            registry = JSON.parse(decodeBase64(file.content));
+          } catch (error) {
+            throw new Error("The GitHub registry could not be decoded as valid JSON. No changes were written.");
+          }
           var index = registry.assets.findIndex(function (asset) { return asset.id === assetId; });
           if (index < 0) throw new Error("This asset was not found in the current registry.");
 
@@ -785,13 +816,14 @@
             body: JSON.stringify({
               message: "Update tracking for " + registry.assets[index].title,
               content: encodeBase64(JSON.stringify(registry, null, 2) + "\n"),
-              sha: file.sha
+              sha: file.sha,
+              branch: branchName()
             })
           });
           var result = await writeResponse.json();
           if (writeResponse.ok) return { asset: registry.assets[index], commit: result.commit };
           if ((writeResponse.status === 409 || writeResponse.status === 422) && attempt === 0) continue;
-          throw new Error(result.message || "GitHub rejected the update.");
+          throw githubApiError(writeResponse, result, "save");
         }
         throw new Error("The registry changed during the save. Please try again.");
       }
@@ -803,11 +835,11 @@
       }
 
       async function syncQueuedChanges() {
-        if (!state.authenticated) return;
+        if (!state.authenticated) return { ok: false, error: new Error("Connect GitHub before syncing queued edits.") };
         var queued = state.assets.filter(function (asset) {
           return Boolean(localStorage.getItem(storagePrefix + asset.id));
         });
-        if (!queued.length) return;
+        if (!queued.length) return { ok: true };
         setPersistence("Syncing " + queued.length + " queued browser edit" + (queued.length === 1 ? "" : "s") + " to GitHub…", "");
         for (var i = 0; i < queued.length; i += 1) {
           var asset = current(queued[i]);
@@ -819,13 +851,15 @@
             });
             applySavedAsset(result.asset);
           } catch (error) {
+            if (error.status === 401 || error.status === 403) disconnectGitHub();
             setPersistence("A queued edit could not be synced: " + error.message, "error");
             render();
-            return;
+            return { ok: false, error: error };
           }
         }
         render();
         updateAuthUi();
+        return { ok: true };
       }
 
       function formatPublished(value) {
@@ -980,6 +1014,7 @@
           updateAuthUi();
           document.getElementById("saveAnnouncement").textContent = "Changes to " + result.asset.title + " were saved permanently to GitHub.";
         } catch (error) {
+          if (error.status === 401 || error.status === 403) disconnectGitHub();
           message.textContent = error.message;
           setPersistence("The last edit remains queued because GitHub could not be updated.", "error");
         } finally {
@@ -1012,10 +1047,15 @@
         message.textContent = "";
         try {
           await validateToken(token);
+          var syncResult = await syncQueuedChanges();
+          if (!syncResult.ok) {
+            message.textContent = syncResult.error.message;
+            return;
+          }
           document.getElementById("githubToken").value = "";
           authDialog.close();
-          await syncQueuedChanges();
         } catch (error) {
+          if (error.status === 401 || error.status === 403) disconnectGitHub();
           message.textContent = error.message;
         } finally {
           button.disabled = false;
