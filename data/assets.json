@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "updated_at": "2026-10-14",
+  "updated_at": "2026-10-16",
   "assets": [
     {
       "id": "2025-state-of-the-future-us-workforce",
@@ -665,9 +665,9 @@
       "summary": "This student-facing guide directs counselors to free federal occupation profiles, classroom activities, videos, pay and outlook data, and pathways including apprenticeships and Job Corps.",
       "discovered_date": "2026-08-10",
       "review_status": "approved",
-      "used_for_exploration": false,
-      "used_date": null,
-      "last_updated_at": "2026-08-12T12:12:17.838Z",
+      "used_for_exploration": true,
+      "used_date": "2026-10-19",
+      "last_updated_at": "2026-10-16T18:48:20.381Z",
       "last_updated_by": "SCconsultant33"
     },
     {
