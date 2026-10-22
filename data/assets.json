@@ -1494,9 +1494,11 @@
       "url": "https://studentaid.gov/articles/dont-miss-out-on-pell-grants/",
       "summary": "This current federal article explains Pell Grant purpose, eligibility, award limits, duration, FAFSA access, and realistic student examples, helping counselors challenge assumptions and connect families to need-based aid.",
       "discovered_date": "2026-10-09",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:25:20.089Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "guide-using-career-clusters-framework-in-career-advising",
