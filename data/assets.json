@@ -1248,9 +1248,11 @@
       "url": "https://www.congress.gov/crs_external_products/IF/PDF/IF11788/IF11788.11.pdf",
       "summary": "This nonpartisan federal primer explains the military service academies, competitive admissions and nomination requirements, student life, preparatory schools, costs, and service obligations so counselors can accurately frame academy-based officer pathways.",
       "discovered_date": "2026-09-16",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:18:14.885Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "defense-primer-active-component-enlisted-recruiting",
