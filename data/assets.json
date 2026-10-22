@@ -1110,9 +1110,11 @@
       "url": "https://studentaid.gov/articles/things-you-need-for-fafsa/",
       "summary": "This current federal checklist identifies the accounts, contributor details, tax records, child-support data, assets, and school list students need for the 2026–27 FAFSA, helping counselors structure completion preparation.",
       "discovered_date": "2026-09-10",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:16:33.132Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "michigan-hot-50-job-outlook-through-2034",
