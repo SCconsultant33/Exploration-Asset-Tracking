@@ -1320,9 +1320,11 @@
       "url": "https://www.bls.gov/careeroutlook/2026/data-on-display/education-pays.htm",
       "summary": "This 2026 federal chart compares 2025 median weekly earnings and unemployment rates across education levels, giving counselors a current visual for discussing education-to-work outcomes while noting other factors that shape results.",
       "discovered_date": "2026-09-25",
-      "review_status": "pending",
+      "review_status": "not_approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:22:54.865Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "onet-interest-profiler",
