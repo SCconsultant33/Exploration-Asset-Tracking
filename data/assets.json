@@ -934,9 +934,11 @@
       "url": "https://www.bls.gov/careeroutlook/2025/article/education-level-and-openings-2024-34.htm",
       "summary": "This federal outlook compares occupations with the most projected openings across five education levels, pairing each pathway with wages, experience, training, and skill information for data-informed student planning.",
       "discovered_date": "2026-08-26",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:12:12.774Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "michigan-pathfinder",
