@@ -1400,9 +1400,11 @@
       "url": "https://studentaid.gov/articles/4-things-consider-choosing-college-career-school/",
       "summary": "This federal article gives counselors a simple College Scorecard framework for helping students compare net cost, graduation and retention, debt repayment, and post-enrollment earnings before choosing a school.",
       "discovered_date": "2026-10-02",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:24:48.964Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "career-clusters-framework-project-one-pagers-for-learners",
