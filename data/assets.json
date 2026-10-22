@@ -946,9 +946,11 @@
       "url": "https://www.michigan.gov/-/media/Project/Websites/leo/Documents/WD/Program-Overviews/Pathfinder.pdf?rev=0caf5725b1c44b0481e885d74e23a110",
       "summary": "This one-page state guide introduces Michigan’s free Pathfinder tool for matching skills to careers, comparing education costs with employment outcomes, and building training paths and Educational Development Plans.",
       "discovered_date": "2026-08-26",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:09:51.550Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "joining-the-guard-or-reserves",
