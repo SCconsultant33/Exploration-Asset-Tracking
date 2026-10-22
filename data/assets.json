@@ -872,9 +872,11 @@
       "url": "https://www.usa.gov/us-military",
       "summary": "This neutral federal comparison summarizes the six service branches, their missions, member names, reserve components, and special operations, supporting an introductory counselor-led exploration of military options.",
       "discovered_date": "2026-08-19",
-      "review_status": "pending",
+      "review_status": "not_approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:09:22.812Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "military-tuition-assistance",
