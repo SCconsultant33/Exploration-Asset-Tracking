@@ -1672,9 +1672,11 @@
       "url": "https://bigfuture.collegeboard.org/media/pdf/fit-imperative-school-guide.pdf",
       "summary": "This school-facing guide gives counselors and other educators grade-timed discussion prompts and activities for helping students weigh academic and career alignment, affordability, belonging, and personal priorities when evaluating postsecondary fit.",
       "discovered_date": "2026-10-21",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:28:42.805Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "understanding-application-fees-fee-waivers",
