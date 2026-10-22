@@ -1480,9 +1480,11 @@
       "url": "https://www.commonapp.org/static/179362d503f2acafe84bfad3e21655c3/Determine-Your-College-Fit-Direct-Admissions.pdf",
       "summary": "This one-page current checklist helps counselors guide students evaluating direct-admission offers by checking program fit, net costs and aid, campus factors, career outcomes, deadlines, and the offers’ nonbinding status.",
       "discovered_date": "2026-10-09",
-      "review_status": "pending",
+      "review_status": "not_approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:25:33.190Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "dont-miss-out-on-federal-pell-grants",
