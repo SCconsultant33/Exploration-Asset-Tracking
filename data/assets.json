@@ -1428,9 +1428,11 @@
       "url": "https://www.bls.gov/k12/teachers/activities/choosing-a-career-activity.htm",
       "summary": "This federal secondary-level activity guides students to research an occupation’s duties, education, skills, pay, outlook, and worker perspectives, then assess whether the career fits their interests and goals.",
       "discovered_date": "2026-10-02",
-      "review_status": "pending",
+      "review_status": "not_approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:24:14.150Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "meeting-military-fitness-standards",
