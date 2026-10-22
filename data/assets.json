@@ -1364,9 +1364,11 @@
       "url": "https://files.gao.gov/reports/GAO-26-107524/index.html",
       "summary": "This federal audit documents JROTC safeguarding responsibilities, reporting gaps, Title IX training weaknesses, oversight findings, and 16 recommendations, helping counselors and school leaders support informed participation and student safety.",
       "discovered_date": "2026-09-25",
-      "review_status": "pending",
+      "review_status": "not_approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:22:11.160Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "early-college-awareness",
