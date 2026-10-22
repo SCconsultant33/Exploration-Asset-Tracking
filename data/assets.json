@@ -1288,9 +1288,11 @@
       "url": "https://collegescorecard.ed.gov/assets/College-Scorecard-Guide.pdf",
       "summary": "This two-page federal guide shows counselors and students how to search, filter, compare, and interpret college profiles using cost, debt, graduation, earnings, enrollment, and program data.",
       "discovered_date": "2026-09-25",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:21:03.742Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "key-facts-about-your-studentaid-gov-account",
