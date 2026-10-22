@@ -1686,9 +1686,11 @@
       "url": "https://www.commonapp.org/static/653ded5d8d0d5d685e10ae814a7b2c85/Understanding-App-Fees-and-Waivers.pdf",
       "summary": "This two-page student handout explains where Common App application fees appear, how its fee waiver works, what counselors confirm, and where students should check institution-specific policies.",
       "discovered_date": "2026-10-21",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:28:26.021Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "connected-career-advising-explainer",
