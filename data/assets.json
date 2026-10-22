@@ -1624,9 +1624,11 @@
       "url": "https://www.bls.gov/careeroutlook/2026/youre-a-what/ceramicist.htm",
       "summary": "This federal career interview describes a ceramicist's daily work, production process, education, industry experience, self-employment, teaching, and entrepreneurial challenges for realistic creative-career exploration.",
       "discovered_date": "2026-10-14",
-      "review_status": "pending",
+      "review_status": "not_approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:28:12.454Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "understanding-predeployment-to-reunion-and-reintegration",
