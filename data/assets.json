@@ -1304,9 +1304,11 @@
       "url": "https://studentaid.gov/articles/key-facts-accounts/",
       "summary": "This current federal article explains who needs an account, account creation with or without a Social Security number, identity verification, two-step security, FAFSA use, repayment access, and troubleshooting so counselors can prepare students and contributors.",
       "discovered_date": "2026-09-25",
-      "review_status": "pending",
+      "review_status": "not_approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:21:59.124Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "education-pays-2025-bls",
