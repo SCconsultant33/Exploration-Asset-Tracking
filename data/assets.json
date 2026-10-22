@@ -904,9 +904,11 @@
       "url": "https://nces.ed.gov/collegenavigator/?lang=en",
       "summary": "This free federal search and comparison tool lets counselors and students filter colleges by programs, location, cost, admissions, institution type, and other characteristics, then save, compare, map, and export results.",
       "discovered_date": "2026-08-26",
-      "review_status": "pending",
+      "review_status": "not_approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:12:32.482Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "fafsa-submission-summary-what-you-need-to-know",
