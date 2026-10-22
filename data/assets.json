@@ -1124,9 +1124,11 @@
       "url": "https://www.michigan.gov/mcda/-/media/Project/Websites/mcda/reports/2026/Michigan-Hot-50-Job-Outlook-through-2034.pdf?rev=5a0ff38196074985bc911b3fbe01e477",
       "summary": "This two-page state outlook lists 50 Michigan high-demand, high-wage occupations with annual openings, projected growth, wage ranges, and typical education or training, supporting data-informed career conversations and EDP planning.",
       "discovered_date": "2026-09-10",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:16:15.431Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "2026-registered-apprenticeships-in-michigan-report",
