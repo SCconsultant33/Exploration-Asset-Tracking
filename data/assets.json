@@ -1352,9 +1352,11 @@
       "url": "https://www.congress.gov/crs_external_products/IF/PDF/IF11313/IF11313.19.pdf",
       "summary": "This nonpartisan federal primer explains JROTC curriculum, staffing, funding, participation, possible student benefits, the absence of an automatic military obligation, recruiting connections, and equity and oversight questions for schools.",
       "discovered_date": "2026-09-25",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:23:11.687Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "jrotc-oversight-and-instructor-sexual-misconduct",
