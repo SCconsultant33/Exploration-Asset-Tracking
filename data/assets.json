@@ -1264,9 +1264,11 @@
       "url": "https://www.congress.gov/crs_external_products/IF/PDF/IF11147/IF11147.15.pdf",
       "summary": "This nonpartisan federal primer describes active-duty recruiting goals, high school diploma and AFQT quality benchmarks, enlistment eligibility standards, incentives, and recent branch outcomes, giving counselors neutral context beyond recruiting materials.",
       "discovered_date": "2026-09-16",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:18:57.228Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "using-the-college-scorecard",
