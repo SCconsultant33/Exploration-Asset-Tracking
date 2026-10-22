@@ -978,9 +978,11 @@
       "url": "https://www.congress.gov/crs_external_products/R/PDF/R48793/R48793.1.pdf",
       "summary": "This nonpartisan federal report explains military entry standards and preparatory courses that address aptitude or physical-fitness gaps, giving counselors current context for students who may not initially qualify to enlist.",
       "discovered_date": "2026-08-26",
-      "review_status": "pending",
+      "review_status": "not_approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:11:14.025Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "common-app-case-studies",
