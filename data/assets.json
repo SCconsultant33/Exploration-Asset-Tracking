@@ -1704,9 +1704,11 @@
       "url": "https://careertech.org/wp-content/uploads/2026/01/Advance-CTE-Explainer-Connected-Career-Advising.pdf",
       "summary": "This national explainer helps counseling teams align roles, routines, professional learning, partners, and career information so students receive coherent support as they identify interests and explore education, work-based learning, and career pathways.",
       "discovered_date": "2026-10-21",
-      "review_status": "pending",
+      "review_status": "not_approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:29:30.972Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "institutional-review-board-specialist",
