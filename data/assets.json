@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "updated_at": "2026-10-21",
+  "updated_at": "2026-10-22",
   "assets": [
     {
       "id": "2025-state-of-the-future-us-workforce",
@@ -808,9 +808,11 @@
       "url": "https://studentaid.gov/articles/fafsa-student-steps/",
       "summary": "This current walkthrough explains each student section of the 2026–27 FAFSA, contributor invitations, dependency questions, financial entries, and school selection so counselors can prepare seniors and troubleshoot common completion errors.",
       "discovered_date": "2026-08-19",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:07:48.123Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "common-app-writing-guide-for-counselors-and-teachers",
