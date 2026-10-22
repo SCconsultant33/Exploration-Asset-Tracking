@@ -1648,9 +1648,11 @@
       "url": "https://www.militaryonesource.mil/military-basics/new-to-the-military/military-insignia-what-are-those-stripes-and-bars/",
       "summary": "This official overview explains rank, pay grade, insignia, and enlisted, noncommissioned, warrant, and commissioned-officer categories across branches, clarifying how responsibility and leadership progress in military careers.",
       "discovered_date": "2026-10-14",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:27:10.257Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "fit-imperative-action-guide-for-schools",
