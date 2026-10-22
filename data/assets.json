@@ -1632,9 +1632,11 @@
       "url": "https://www.militaryonesource.mil/military-basics/deployment-101-predeployment-to-reintegration/",
       "summary": "This official guide explains deployment purposes, preparation, branch-specific time-away patterns, family and communication demands, operational security, mental-health considerations, and reintegration so students can examine service realistically.",
       "discovered_date": "2026-10-14",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:26:52.823Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "military-insignia-stripes-and-bars",
