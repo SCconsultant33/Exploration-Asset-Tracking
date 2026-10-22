@@ -856,9 +856,11 @@
       "url": "https://www.michigan.gov/mcda/-/media/Project/Websites/mcda/reports/2024/Michigan-Career-Outlook-through-2032.pdf?rev=0024b2ca17994d3b967adc3c275754cb",
       "summary": "This state report organizes Michigan’s in-demand occupations by education and training level and highlights STEM pathways, helping counselors connect student plans with projected openings and wage ranges.",
       "discovered_date": "2026-08-19",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:09:01.511Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "learn-about-the-us-military-branches",
