@@ -1000,9 +1000,11 @@
       "url": "https://www.commonapp.org/counselors-and-recommenders/case-studies/",
       "summary": "This counselor-ready activity package uses a fictional college and applications to help students and families practice holistic admissions review and discuss how context, academics, writing, activities, and institutional priorities shape decisions.",
       "discovered_date": "2026-09-03",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:14:21.918Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "do-you-need-money-for-college-or-career-trade-school",
