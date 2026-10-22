@@ -1576,9 +1576,11 @@
       "url": "https://www.commonapp.org/files/DAR/Common-App-Brief-First-Generation-Part-5.pdf",
       "summary": "This national research brief follows nearly 784,000 applicants across enrollment, persistence, and completion, showing how more than 30 parental-education combinations reveal support needs hidden by a simple first-generation binary.",
       "discovered_date": "2026-10-14",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:28:02.950Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "how-to-get-started-with-college-planning",
