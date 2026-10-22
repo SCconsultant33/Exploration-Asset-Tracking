@@ -1718,9 +1718,11 @@
       "url": "https://www.bls.gov/careeroutlook/2026/youre-a-what/institutional-review-board-specialist.htm",
       "summary": "This BLS career profile describes the daily work, education, skills, career route, challenges, and rewards of an institutional review board specialist, giving counselors a concrete research-administration occupation to share with students.",
       "discovered_date": "2026-10-21",
-      "review_status": "pending",
+      "review_status": "not_approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:29:07.091Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "military-elite-forces",
