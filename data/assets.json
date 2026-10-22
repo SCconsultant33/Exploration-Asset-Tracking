@@ -1536,9 +1536,11 @@
       "url": "https://www.militaryonesource.mil/resources/millife-guides/military-life-basics/",
       "summary": "This Defense Department guide gives students a realistic view of military structure, discipline, physical and mental demands, reduced schedule and assignment control, relocation, support systems, and skill development.",
       "discovered_date": "2026-10-09",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:25:03.351Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "defense-primer-military-retirement",
