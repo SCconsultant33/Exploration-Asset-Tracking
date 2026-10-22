@@ -1014,9 +1014,11 @@
       "url": "https://studentaid.gov/sites/default/files/do-you-need-money.pdf",
       "summary": "This federal student guide explains aid eligibility, FAFSA accounts and deadlines, dependency status, grants, work-study, loans, aid offers, and next steps for college or career/trade school.",
       "discovered_date": "2026-09-03",
-      "review_status": "pending",
+      "review_status": "not_approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:13:38.673Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "explore-apprenticeship-opportunities-for-young-people",
