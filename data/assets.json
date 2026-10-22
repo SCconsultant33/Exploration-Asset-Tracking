@@ -962,9 +962,11 @@
       "url": "https://www.militaryonesource.mil/resources/millife-guides/guard-and-reserves/",
       "summary": "This federal guide explains Guard and reserve eligibility, training, drill schedules, activation, service commitments, benefits, and branch contacts so counselors can help students compare part-time military service with active duty.",
       "discovered_date": "2026-08-26",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:10:14.174Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "future-servicemember-preparatory-courses",
