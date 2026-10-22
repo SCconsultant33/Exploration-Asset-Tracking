@@ -1456,9 +1456,11 @@
       "url": "https://myfuture.com/joining-the-military/life-after-the-military/",
       "summary": "This official overview helps counselors discuss the long-term implications of military service through transition planning, post-service education, civilian employment, entrepreneurship, benefits, and alternative public-service pathways.",
       "discovered_date": "2026-10-02",
-      "review_status": "pending",
+      "review_status": "not_approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:23:38.411Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "determining-college-fit-from-your-direct-admissions-offer",
