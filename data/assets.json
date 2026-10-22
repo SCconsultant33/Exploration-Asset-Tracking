@@ -1028,9 +1028,11 @@
       "url": "https://www.apprenticeship.gov/sites/default/files/DOL_IndustryFactsheet_Youth_v2.pdf",
       "summary": "This federal two-page resource explains how pre-apprenticeship and Registered Apprenticeship can begin during high school or dual enrollment, combining paid work, related coursework, credentials, and postsecondary pathways.",
       "discovered_date": "2026-09-03",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:13:16.193Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "healthcare-science-and-engineering-careers-that-dont-require-a-4-year-degree",
