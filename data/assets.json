@@ -1152,9 +1152,11 @@
       "url": "https://myfuture.com/joining-the-military/military-common-questions/",
       "summary": "This official student FAQ answers common questions about eligibility, branches, recruiters, service commitments, education benefits, job training, specialty selection, and MEPS, helping counselors organize balanced pre-recruiter discussions.",
       "discovered_date": "2026-09-10",
-      "review_status": "pending",
+      "review_status": "not_approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:15:53.068Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "military-recruiting-actions-needed-to-address-digital-marketing-challenges",
