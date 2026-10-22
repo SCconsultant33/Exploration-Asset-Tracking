@@ -1736,9 +1736,11 @@
       "url": "https://www.militaryonesource.mil/military-basics/new-to-the-military/joining-the-military-elite-forces/",
       "summary": "This official overview compares special-operations roles across the Army, Marine Corps, Navy, and Air Force, including citizenship, education, ASVAB, fitness, clearance, and training expectations for prospective applicants.",
       "discovered_date": "2026-10-21",
-      "review_status": "pending",
+      "review_status": "approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:29:42.800Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "stem-careers-department-of-war",
