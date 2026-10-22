@@ -1166,9 +1166,11 @@
       "url": "https://www.gao.gov/assets/gao-25-106719.pdf",
       "summary": "This independent federal review explains how military services market to Gen Z, summarizes youth and mentor perceptions, and evaluates recruitment websites and digital practices, helping counselors teach students to assess recruiting messages critically.",
       "discovered_date": "2026-09-10",
-      "review_status": "pending",
+      "review_status": "not_approved",
       "used_for_exploration": false,
-      "used_date": null
+      "used_date": null,
+      "last_updated_at": "2026-10-22T19:15:17.099Z",
+      "last_updated_by": "SCconsultant33"
     },
     {
       "id": "common-app-counselor-brag-sheet",
