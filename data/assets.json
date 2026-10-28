@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "updated_at": "2026-10-23",
+  "updated_at": "2026-10-28",
   "assets": [
     {
       "id": "2025-state-of-the-future-us-workforce",
@@ -1757,6 +1757,90 @@
       "used_date": null,
       "last_updated_at": "2026-10-22T19:28:58.022Z",
       "last_updated_by": "SCconsultant33"
+    },
+    {
+      "id": "parents-guide-to-college-visits",
+      "title": "Parent’s Guide to College Visits",
+      "category": "college",
+      "asset_type": "Resource",
+      "source": "BigFuture, College Board",
+      "published_date": "2026-03",
+      "url": "https://bigfuture.collegeboard.org/media/pdf/parents-guide-to-college-visits.pdf",
+      "summary": "This family-facing planning guide gives counselors a before-during-after framework for campus visits, including research prompts, questions about academics, support, safety, affordability, and careers, plus structured post-visit reflection.",
+      "discovered_date": "2026-10-28",
+      "review_status": "pending",
+      "used_for_exploration": false,
+      "used_date": null
+    },
+    {
+      "id": "my-college-requirements-worksheet",
+      "title": "My College Requirements Worksheet",
+      "category": "college",
+      "asset_type": "Resource",
+      "source": "Common App",
+      "published_date": "2025",
+      "url": "https://www.commonapp.org/static/364d7dc722b95ad3ef3051ee4c8293f2/Resource_FY_MyCollegeReq_ENG_2025.06.25_1.pdf",
+      "summary": "This reusable Common App worksheet helps students and counselors track deadlines, fees, essays, supplements, testing policies, course reporting, recommendations, and other requirements for four colleges in one place.",
+      "discovered_date": "2026-10-28",
+      "review_status": "pending",
+      "used_for_exploration": false,
+      "used_date": null
+    },
+    {
+      "id": "occupational-outlook-handbook-occupation-finder",
+      "title": "Occupational Outlook Handbook Occupation Finder",
+      "category": "career",
+      "asset_type": "Website",
+      "source": "U.S. Bureau of Labor Statistics",
+      "published_date": "2026-08",
+      "url": "https://www.bls.gov/ooh/occupation-finder.htm",
+      "summary": "This updated federal comparison tool lets counselors and students filter hundreds of occupations by entry education, work experience, on-the-job training, projected openings and growth, and 2025 median pay, then open full career profiles.",
+      "discovered_date": "2026-10-28",
+      "review_status": "pending",
+      "used_for_exploration": false,
+      "used_date": null
+    },
+    {
+      "id": "miregistry-career-exploration-tool",
+      "title": "MiRegistry Career Exploration Tool",
+      "category": "career",
+      "asset_type": "Website",
+      "source": "MiRegistry and Michigan Department of Lifelong Education, Advancement, and Potential",
+      "published_date": "2026-04",
+      "url": "https://miregistry.org/explore-careerpathway/",
+      "summary": "This Michigan tool combines self-assessments, role profiles, day-in-the-life stories, qualification and training pathways, and financial supports for students exploring early-childhood and school-age care and education careers.",
+      "discovered_date": "2026-10-28",
+      "review_status": "pending",
+      "used_for_exploration": false,
+      "used_date": null
+    },
+    {
+      "id": "military-pay",
+      "title": "Military Pay",
+      "category": "military",
+      "asset_type": "Website",
+      "source": "USAGov, U.S. General Services Administration",
+      "published_date": "2026-05",
+      "url": "https://www.usa.gov/military-pay",
+      "summary": "This official federal overview helps counselors explain how active-duty compensation combines basic pay, food and housing allowances, possible special pay, and rank- and service-based pay charts for active and reserve members.",
+      "discovered_date": "2026-10-28",
+      "review_status": "pending",
+      "used_for_exploration": false,
+      "used_date": null
+    },
+    {
+      "id": "register-for-selective-service",
+      "title": "Register for Selective Service (the Draft)",
+      "category": "military",
+      "asset_type": "Website",
+      "source": "USAGov, U.S. General Services Administration",
+      "published_date": "2026-08",
+      "url": "https://www.usa.gov/register-selective-service",
+      "summary": "This current federal guide clarifies that U.S. military service is voluntary while explaining who must register with Selective Service, how to register, consequences of nonregistration, and when a draft could occur.",
+      "discovered_date": "2026-10-28",
+      "review_status": "pending",
+      "used_for_exploration": false,
+      "used_date": null
     }
   ]
 }
