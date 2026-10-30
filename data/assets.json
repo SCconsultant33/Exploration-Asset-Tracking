@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "updated_at": "2026-10-28",
+  "updated_at": "2026-10-30",
   "assets": [
     {
       "id": "2025-state-of-the-future-us-workforce",
@@ -1449,9 +1449,9 @@
       "summary": "This current Defense Department guide compares branch fitness-test expectations and preparation practices, helping counselors give students a realistic view of the physical-readiness commitments connected to service.",
       "discovered_date": "2026-10-02",
       "review_status": "approved",
-      "used_for_exploration": false,
-      "used_date": null,
-      "last_updated_at": "2026-10-22T19:23:28.972Z",
+      "used_for_exploration": true,
+      "used_date": "2026-11-02",
+      "last_updated_at": "2026-10-30T12:18:42.937Z",
       "last_updated_by": "SCconsultant33"
     },
     {
